@@ -108,14 +108,14 @@
 <meta property="og:site_name" content="BLOG">
 <meta property="og:description" content="概念序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程  Unity 如何序列化Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。 MonoBehavior 编写可被序列化的字段必须符合以下几点：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2020/05/18/unity序列化/img/2020_5_18/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/18/unity序列化/img/2020_5_18/2.png">
-<meta property="og:image" content="http://yoursite.com/2020/05/18/unity序列化/img/2020_5_18/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/3.png">
 <meta property="og:updated_time" content="2020-05-18T10:16:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unity序列化">
 <meta name="twitter:description" content="概念序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程  Unity 如何序列化Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。 MonoBehavior 编写可被序列化的字段必须符合以下几点：">
-<meta name="twitter:image" content="http://yoursite.com/2020/05/18/unity序列化/img/2020_5_18/1.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/1.png">
 
 
 
@@ -445,7 +445,7 @@
 
       
         <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程</p>
-<p><img src="./img/2020_5_18/1.png" alt="avatar"></p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/1.png" alt="avatar"></p>
 <h1 id="Unity-如何序列化"><a href="#Unity-如何序列化" class="headerlink" title="Unity 如何序列化"></a>Unity 如何序列化</h1><p>Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。</p>
 <h2 id="MonoBehavior-编写"><a href="#MonoBehavior-编写" class="headerlink" title="MonoBehavior 编写"></a>MonoBehavior 编写</h2><p>可被序列化的字段必须符合以下几点：</p>
 <ul>
@@ -477,7 +477,7 @@
 <li>可存储为 xx.asset 资源，不再依托于 GameObject</li>
 <li>ScriptableObjects 继承自 Unity.Object， 在序列化时创建的是对象的引用。</li>
 </ul>
-<h1 id="Unity-Edtior-对序列化数据的使用"><a href="#Unity-Edtior-对序列化数据的使用" class="headerlink" title="Unity Edtior 对序列化数据的使用"></a>Unity Edtior 对序列化数据的使用</h1><p><img src="./img/2020_5_18/2.png" alt="avatar"></p>
+<h1 id="Unity-Edtior-对序列化数据的使用"><a href="#Unity-Edtior-对序列化数据的使用" class="headerlink" title="Unity Edtior 对序列化数据的使用"></a>Unity Edtior 对序列化数据的使用</h1><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/2.png" alt="avatar"></p>
 <p>Editor 通过修改序列化数据修改以及显示目标对象</p>
 <h2 id="操作-API"><a href="#操作-API" class="headerlink" title="操作 API"></a>操作 API</h2><p><strong>EditorWIndow</strong>  </p>
 <blockquote>
@@ -500,7 +500,7 @@
 <ul>
 <li>不会改变检查器的原始行为，而是扩展它 </li>
 <li>一个属性上能加不止一个DecoratorDrawer </li>
-<li>数组或List上加DecoratorDrawer只会对第一个起作用。<br><img src="./img/2020_5_18/3.png" alt="avatar"></li>
+<li>数组或List上加DecoratorDrawer只会对第一个起作用。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/3.png" alt="avatar"></li>
 </ul>
 </li>
 </ul>
