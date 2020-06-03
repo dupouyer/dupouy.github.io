@@ -100,27 +100,30 @@
 
 
 
-  <meta name="description" content="基本的数据结构类型  数组 最常用的数据结构  在内存中申请一块固定长度连续空间，可通过下标来访问1array = malloc(n); 因为内存需要提前申请，所以在使用上如果遇到可变长度的存储需求时，需要频繁申请新的内存块，会有严重的内存开销问题，所以引入了链表 链表以节点为存储单元，一个节点包含值与下一个节点的地址123linkNode = malloc(2);linkNode[1] = v">
-<meta name="keywords" content="算法,数据结构">
+  <meta name="description" content="目标项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化 问题IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大 研究2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。原帖地址在 unity2017 版本中，并没有作者所提到的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基础数据结构">
-<meta property="og:url" content="http://yoursite.com/2020/04/07/BasicDataStructure/index.html">
+<meta property="og:title" content="Stripping with IL2CPP">
+<meta property="og:url" content="http://yoursite.com/2020/06/02/Stripping-with-IL2CPP/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="基本的数据结构类型  数组 最常用的数据结构  在内存中申请一块固定长度连续空间，可通过下标来访问1array = malloc(n); 因为内存需要提前申请，所以在使用上如果遇到可变长度的存储需求时，需要频繁申请新的内存块，会有严重的内存开销问题，所以引入了链表 链表以节点为存储单元，一个节点包含值与下一个节点的地址123linkNode = malloc(2);linkNode[1] = v">
+<meta property="og:description" content="目标项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化 问题IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大 研究2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。原帖地址在 unity2017 版本中，并没有作者所提到的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2381726-fb4e3aaa4b98af99.png?imageMogr2/auto-orient/strip|imageView2/2/w/450/format/webp">
-<meta property="og:updated_time" content="2020-04-07T11:30:00.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png">
+<meta property="og:updated_time" content="2020-06-02T03:26:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基础数据结构">
-<meta name="twitter:description" content="基本的数据结构类型  数组 最常用的数据结构  在内存中申请一块固定长度连续空间，可通过下标来访问1array = malloc(n); 因为内存需要提前申请，所以在使用上如果遇到可变长度的存储需求时，需要频繁申请新的内存块，会有严重的内存开销问题，所以引入了链表 链表以节点为存储单元，一个节点包含值与下一个节点的地址123linkNode = malloc(2);linkNode[1] = v">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2381726-fb4e3aaa4b98af99.png?imageMogr2/auto-orient/strip|imageView2/2/w/450/format/webp">
+<meta name="twitter:title" content="Stripping with IL2CPP">
+<meta name="twitter:description" content="目标项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化 问题IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大 研究2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。原帖地址在 unity2017 版本中，并没有作者所提到的">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/04/07/BasicDataStructure/">
+  <link rel="canonical" href="http://yoursite.com/2020/06/02/Stripping-with-IL2CPP/">
 
 
 
@@ -130,7 +133,7 @@
   };
 </script>
 
-  <title>基础数据结构 | BLOG</title>
+  <title>Stripping with IL2CPP | BLOG</title>
   
 
 
@@ -346,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/07/BasicDataStructure/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/02/Stripping-with-IL2CPP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dupouy">
@@ -363,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">基础数据结构
+          <h1 class="post-title" itemprop="name headline">Stripping with IL2CPP
 
               
             
@@ -389,30 +392,12 @@
                 
               
 
-              <time title="创建时间：2020-04-07 19:30:00" itemprop="dateCreated datePublished" datetime="2020-04-07T19:30:00+08:00">2020-04-07</time>
+              <time title="创建时间：2020-06-02 11:26:52" itemprop="dateCreated datePublished" datetime="2020-06-02T11:26:52+08:00">2020-06-02</time>
             
 
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -442,33 +427,25 @@
       
 
       
-        <blockquote>
-<p>基本的数据结构类型</p>
-</blockquote>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><blockquote>
-<p>最常用的数据结构</p>
-</blockquote>
-<p>在内存中申请一块固定长度连续空间，可通过下标来访问<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array = malloc(n);</span><br></pre></td></tr></table></figure></p>
-<p>因为内存需要提前申请，所以在使用上如果遇到可变长度的存储需求时，需要频繁申请新的内存块，会有严重的内存开销问题，所以引入了链表</p>
-<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>以节点为存储单元，一个节点包含值与下一个节点的地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">linkNode = malloc(2);</span><br><span class="line">linkNode[1] = value;</span><br><span class="line">linkeNode[2] = &amp;nextNode;</span><br></pre></td></tr></table></figure></p>
-<p>可根据存储需求临时开辟存储空间。但是在访问单个节点上效率又没有数组来的快捷，需要从头节点逐个遍历至 i。<br>现代编程语言大多实现了 List 类型的数据结构综合两者的优缺点，实现了可变长度且可通过下标访问成员。</p>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>通过内部算法，动态开辟符合长度的内存空间来满足长度需求，不同编程语言的实现方法也会不一样。<br>一下简述一下个人对于 List 一种实现方案  </p>
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
+<h2 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
+<h3 id="测试-Attribute-的优化"><a href="#测试-Attribute-的优化" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png" alt="使用属性"></p>
+<p>未使用属性的 attribute 在反编译结果中未找到对应的声明<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png" alt="反编译结果"></p>
+<h3 id="Managed-bytecode-stripping-with-IL2CPP"><a href="#Managed-bytecode-stripping-with-IL2CPP" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png" alt="Strip Engine Code"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
+<ul>
+<li>如果代码中使用了反射来引用，可能会出现运行时引用类型被剔除的报错。</li>
+<li>项目打包中会有 prefab 资源的提前构建 ab 包，此构建过程在 UnityLinker 调用之前执行，一些类型的引用只存在与 Prefab 中，也会出现类型丢失问题。需要手动排查并引用进 mono 防止类型被剔除。</li>
+</ul>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>对裁剪后的包进行冒烟测试，查找并修复类型丢失的问题。</p>
 <blockquote>
-<p>设置一个合适长度的子数组 (subArray) 长度 k , 根据 List 的长度动态创建以及销毁子数组。<br>设置一个链表 (nodes) 存储子数组的头节点。<br>内置长度计数器 count<br>访问 List[i] = nodes[i % k][int(i / k)]  </p>
+<p>运行时，unity 会抛出类型丢失的错误，并附带一个应用 ID， 通过 <a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDRefrence</a>  查找，获知对应的类型。</p>
 </blockquote>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>先进先出，特点是优先处理最早加入的节点</p>
-<blockquote>
-<p>广度搜索中应用此结构辅助记录每次需要搜索的节点。</p>
-</blockquote>
-<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>先进后出，特点是优先处理最近加入的节点</p>
-<blockquote>
-<p>深度搜索中应用此结构辅助记录每次需要搜索的节点。</p>
-</blockquote>
-<p>队列和栈是两个老生常谈的结构，实现方法有多种。在这里就不详述了,需要的可以自行查找。</p>
-<h2 id="hash表"><a href="#hash表" class="headerlink" title="hash表"></a>hash表</h2><p>给定一个 key 值，通过 hask 函数 adress = hash(key), 获得 key 对应的固定地址。如果有多个key 返回同样的hash值,通过冲突解决函数来获得偏移地址。 hash 表虽然在实现的描述上性能优越，可变长度，快速访问。但是在编程语言中的实现还是需要落在实处，需要基础的数组，链表来实现。</p>
-<h2 id="脚本语言中的-Dictionary-类实现"><a href="#脚本语言中的-Dictionary-类实现" class="headerlink" title="脚本语言中的 Dictionary 类实现"></a>脚本语言中的 Dictionary 类实现</h2><p>这里举例一个字典的实现。<br>两个链表，一个 存储 hask 值 一个存储 value 的引用，从图中可以看出，虽然字典获得快速访问优势，但是付出了更多的空间代价。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2381726-fb4e3aaa4b98af99.png?imageMogr2/auto-orient/strip|imageView2/2/w/450/format/webp" alt="avatar"></p>
-<p>以上就是编程语言中常用的基础数据结构。后续高级的数据结构都无法脱离数组和链表这两种基础结构，都是以两者为存储单元，再配以存取逻辑来实现的。</p>
+<h3 id="反射引用"><a href="#反射引用" class="headerlink" title="反射引用"></a>反射引用</h3><p>测试下来并未出现有相关类型报错的问题，说明代码中没有通过这种方法对类型进行引用。</p>
+<h3 id="资源-ab-包"><a href="#资源-ab-包" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png" alt="结果1"><br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png" alt="结果2"></p>
 
       
     </div>
@@ -490,14 +467,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/算法/" rel="tag"># 算法</a>
-          
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
-          
-        </div>
-      
 
       
       
@@ -507,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/20/Anim/" rel="next" title="动画">
-                <i class="fa fa-chevron-left"></i> 动画
+              <a href="/2020/05/18/unity序列化/" rel="next" title="Unity序列化">
+                <i class="fa fa-chevron-left"></i> Unity序列化
               </a>
             
           </div>
@@ -516,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/08/sort/" rel="prev" title="排序">
-                排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -680,7 +645,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">2.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-number">3.</span> <span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#队列"><span class="nav-number">4.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈"><span class="nav-number">5.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hash表"><span class="nav-number">6.</span> <span class="nav-text">hash表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本语言中的-Dictionary-类实现"><span class="nav-number">7.</span> <span class="nav-text">脚本语言中的 Dictionary 类实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#研究"><span class="nav-number">1.2.</span> <span class="nav-text">研究</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试-Attribute-的优化"><span class="nav-number">1.2.1.</span> <span class="nav-text">测试 Attribute 的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managed-bytecode-stripping-with-IL2CPP"><span class="nav-number">1.2.2.</span> <span class="nav-text">Managed bytecode stripping with IL2CPP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行"><span class="nav-number">1.3.</span> <span class="nav-text">执行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射引用"><span class="nav-number">1.3.1.</span> <span class="nav-text">反射引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源-ab-包"><span class="nav-number">1.3.2.</span> <span class="nav-text">资源 ab 包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果"><span class="nav-number">1.4.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></div>
             
 
           </div>
