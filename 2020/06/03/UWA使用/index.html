@@ -100,25 +100,35 @@
 
 
 
-  <meta name="description" content="动画补间动画补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。缺点：运行时计算，计算量与动画数量，动画复杂度正相关。优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用 补间函数根据当前时间计算出动画状态。公式：state = f(t) 常用补间模拟自然中的物理规则。匀速运动，加速运动，减速运动">
-<meta name="keywords" content="动画">
+  <meta name="description" content="环境准备准备内容下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包 准备步骤这里以安卓平台为例 Unity 工程准备 导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。 拖入 sdk 内的 prefab 至 sce">
+<meta name="keywords" content="tools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动画">
-<meta property="og:url" content="http://yoursite.com/2019/03/20/Anim/index.html">
+<meta property="og:title" content="UWA使用">
+<meta property="og:url" content="http://yoursite.com/2020/06/03/UWA使用/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="动画补间动画补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。缺点：运行时计算，计算量与动画数量，动画复杂度正相关。优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用 补间函数根据当前时间计算出动画状态。公式：state = f(t) 常用补间模拟自然中的物理规则。匀速运动，加速运动，减速运动">
+<meta property="og:description" content="环境准备准备内容下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包 准备步骤这里以安卓平台为例 Unity 工程准备 导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。 拖入 sdk 内的 prefab 至 sce">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-20T11:30:00.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png">
+<meta property="og:updated_time" content="2020-06-03T10:15:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动画">
-<meta name="twitter:description" content="动画补间动画补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。缺点：运行时计算，计算量与动画数量，动画复杂度正相关。优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用 补间函数根据当前时间计算出动画状态。公式：state = f(t) 常用补间模拟自然中的物理规则。匀速运动，加速运动，减速运动">
+<meta name="twitter:title" content="UWA使用">
+<meta name="twitter:description" content="环境准备准备内容下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包 准备步骤这里以安卓平台为例 Unity 工程准备 导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。 拖入 sdk 内的 prefab 至 sce">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/20/Anim/">
+  <link rel="canonical" href="http://yoursite.com/2020/06/03/UWA使用/">
 
 
 
@@ -128,7 +138,7 @@
   };
 </script>
 
-  <title>动画 | BLOG</title>
+  <title>UWA使用 | BLOG</title>
   
 
 
@@ -344,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/Anim/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/03/UWA使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dupouy">
@@ -361,7 +371,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">动画
+          <h1 class="post-title" itemprop="name headline">UWA使用
 
               
             
@@ -387,7 +397,7 @@
                 
               
 
-              <time title="创建时间：2019-03-20 19:30:00" itemprop="dateCreated datePublished" datetime="2019-03-20T19:30:00+08:00">2019-03-20</time>
+              <time title="创建时间：2020-06-03 18:15:37" itemprop="dateCreated datePublished" datetime="2020-06-03T18:15:37+08:00">2020-06-03</time>
             
 
             
@@ -440,25 +450,54 @@
       
 
       
-        <h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h2><p>补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。<br>优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。<br>缺点：运行时计算，计算量与动画数量，动画复杂度正相关。<br>优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用</p>
-<h3 id="补间函数"><a href="#补间函数" class="headerlink" title="补间函数"></a>补间函数</h3><p>根据当前时间计算出动画状态。<br>公式：state = f(t)</p>
-<h4 id="常用补间"><a href="#常用补间" class="headerlink" title="常用补间"></a>常用补间</h4><p>模拟自然中的物理规则。<br>匀速运动，加速运动，减速运动<br>p = (P2 - P1) / T * t</p>
-<p>物理公式：<br>s = V0 <em> t +  a / 2 </em> t ^ 2</p>
-<h4 id="缓动方程"><a href="#缓动方程" class="headerlink" title="缓动方程"></a>缓动方程</h4><p>tween(t, b , c , d)<br>t（time）、b（beforeMove）、c（changeDistance）及d（duration）</p>
-<p>X轴 时间<br>Y轴 量</p>
-<p>对 x 轴归一化处理<br>X = dx = t / d (0 -&gt; 1)<br>Y = dy (0 -&gt; 1)</p>
-<p>构建函数 y = x ^ 2 , y = x ^ 3 …..<br>y = 1 - cos(0.5pi X)<br>y = sin(0.5pi X)</p>
-<p>s = b + c * dy</p>
-<h4 id="IK"><a href="#IK" class="headerlink" title="IK"></a>IK</h4><p>反向动力学<br>M = Mij * Mpos</p>
-<h4 id="骨骼动画"><a href="#骨骼动画" class="headerlink" title="骨骼动画"></a>骨骼动画</h4><p>骨骼，蒙皮，关键帧，补间<br>关键帧存储骨骼的状态信息，骨骼状态信息是矩阵，可参与补间运算。计算出当前时间的骨骼状态后，再更具顶点中记录的权重信息来计算出顶点跟随骨骼运动后的坐标。</p>
-<h2 id="帧动画"><a href="#帧动画" class="headerlink" title="帧动画"></a>帧动画</h2><p>以固定帧率播放贴图内容的动画。<br>优点：表现力强，不受限于动画信息的存储。<br>缺点：贴图内容与动画长度正相关。占用大量内存空间, 播放帧率不稳定时，会失真。</p>
-<p>优化方向：贴图合批，前期规划。</p>
-<h3 id="位图混合"><a href="#位图混合" class="headerlink" title="位图混合"></a>位图混合</h3><p>多张位图混合，控制其中某几张图的滚动形成动画<br>shader 运行时，混合多帧位图。<br>运行时不需要计算帧内容<br>贴图资源大</p>
-<h4 id="利用混合让图片内容动起来"><a href="#利用混合让图片内容动起来" class="headerlink" title="利用混合让图片内容动起来"></a>利用混合让图片内容动起来</h4><p>运行时可以通过shader 加入额外的控制参数，动画内容受运行时控制。</p>
-<h4 id="噪点的利用"><a href="#噪点的利用" class="headerlink" title="噪点的利用"></a>噪点的利用</h4><p>噪点图的参数，在随机性上更自然。 贴图可进入 GPU 运算，效率更佳。</p>
-<h2 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h2><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>播放，帧率</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>anim = controlPoint + f(t)</p>
-
+        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容"><a href="#准备内容" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤"><a href="#准备步骤" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备"><a href="#Unity-工程准备" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备"><a href="#目标测试平台准备" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体"><a href="#发布目标平台包体" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤"><a href="#测试步骤" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online"><a href="#上传-online" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器"><a href="#上传本地服务器" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1"><a href="#用例1" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况"><a href="#基本情况" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况"><a href="#CPU情况" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况"><a href="#GPU情况" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况"><a href="#内存情况" class="headerlink" title="内存情况"></a>内存情况</h3>
       
     </div>
 
@@ -481,7 +520,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动画/" rel="tag"># 动画</a>
+            <a href="/tags/tools/" rel="tag"># tools</a>
           
         </div>
       
@@ -494,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/Unity/" rel="next" title="Unity 总结">
-                <i class="fa fa-chevron-left"></i> Unity 总结
+              <a href="/2020/06/02/Stripping-with-IL2CPP/" rel="next" title="Stripping with IL2CPP">
+                <i class="fa fa-chevron-left"></i> Stripping with IL2CPP
               </a>
             
           </div>
@@ -503,10 +542,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/07/BasicDataStructure/" rel="prev" title="基础数据结构">
-                基础数据结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -671,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动画"><span class="nav-number">1.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#补间动画"><span class="nav-number">1.1.</span> <span class="nav-text">补间动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补间函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">补间函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用补间"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">常用补间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓动方程"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">缓动方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IK"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">IK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#骨骼动画"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">骨骼动画</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帧动画"><span class="nav-number">1.2.</span> <span class="nav-text">帧动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位图混合"><span class="nav-number">1.2.1.</span> <span class="nav-text">位图混合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用混合让图片内容动起来"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">利用混合让图片内容动起来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#噪点的利用"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">噪点的利用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态机"><span class="nav-number">1.3.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">1.4.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准备内容"><span class="nav-number">1.1.</span> <span class="nav-text">准备内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备步骤"><span class="nav-number">1.2.</span> <span class="nav-text">准备步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unity-工程准备"><span class="nav-number">1.2.1.</span> <span class="nav-text">Unity 工程准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标测试平台准备"><span class="nav-number">1.2.2.</span> <span class="nav-text">目标测试平台准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布目标平台包体"><span class="nav-number">1.2.3.</span> <span class="nav-text">发布目标平台包体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试步骤"><span class="nav-number">1.3.</span> <span class="nav-text">测试步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上传-online"><span class="nav-number">1.3.1.</span> <span class="nav-text">上传 online</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传本地服务器"><span class="nav-number">1.3.2.</span> <span class="nav-text">上传本地服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据分析"><span class="nav-number">2.</span> <span class="nav-text">数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用例1"><span class="nav-number">2.1.</span> <span class="nav-text">用例1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本情况"><span class="nav-number">2.1.1.</span> <span class="nav-text">基本情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU情况"><span class="nav-number">2.1.2.</span> <span class="nav-text">CPU情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GPU情况"><span class="nav-number">2.1.3.</span> <span class="nav-text">GPU情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存情况"><span class="nav-number">2.1.4.</span> <span class="nav-text">内存情况</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
