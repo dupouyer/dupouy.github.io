@@ -1124,6 +1124,70 @@ Lua 模块仅适用于使用 Lua 的项目
       </tags>
   </entry>
   <entry>
+    <title>Unity性能检查</title>
+    <url>/2020/06/08/Unity%E6%80%A7%E8%83%BD%E6%A3%80%E6%9F%A5/</url>
+    <content><![CDATA[<h1 id="测试工具"><a href="#测试工具" class="headerlink" title="测试工具"></a>测试工具</h1><p>Unity Profile                    </p>
+<h1 id="测试场景"><a href="#测试场景" class="headerlink" title="测试场景"></a>测试场景</h1><p>内城切换至指挥官界面                        </p>
+<h1 id="开始测试"><a href="#开始测试" class="headerlink" title="开始测试"></a>开始测试</h1><ul>
+<li>加入开始标签  startSwitchScene                        </li>
+<li>加入结束标签 SwitchSceneComplete                        <h2 id="获得流程帧区间"><a href="#获得流程帧区间" class="headerlink" title="获得流程帧区间"></a>获得流程帧区间</h2>| Sample | 帧 |<br>| :- | :- |<br>| StartSwtichScene | 68  |<br>| SwitchSceneComplete | 71 |</li>
+</ul>
+<p>整个流程帧数合计 3 帧  </p>
+<blockquote>
+<p>总耗时: 310.62 + 96.62 + 16.53 + 760.59 = 1184.36(ms)</p>
+</blockquote>
+<h2 id="新增自定义-Sample"><a href="#新增自定义-Sample" class="headerlink" title="新增自定义 Sample"></a>新增自定义 Sample</h2><p>检查代码逻辑，这三帧的操作可以归类为以下情况</p>
+<ul>
+<li>开始切换<br>Sample: StartSwitchScene</li>
+<li>显示 loading ,加载 UIPackage<br>Sample: ShowLoadUI  </li>
+<li>离开当前场景<br>Sample: SceneBase.LeaveScene<br>Sample: Lua Call scene hide</li>
+<li>加载完毕</li>
+<li>离开场景完毕，清理内存<br>Sample: ClearMemory  </li>
+<li>进入新场景<br>Sample: SceneBase.EnterScene<br>Sample: Lua Call scene show  </li>
+<li>场景切换完成<br>Sample: Lua Call scene change<br>Sample: EnterSceneComplete  </li>
+</ul>
+<h2 id="逐帧分析"><a href="#逐帧分析" class="headerlink" title="逐帧分析"></a>逐帧分析</h2><h3 id="峰值帧为第-71-帧"><a href="#峰值帧为第-71-帧" class="headerlink" title="峰值帧为第 71 帧"></a>峰值帧为第 71 帧</h3><p>详情如下<br><img src="/2020/06/08/Unity性能检查/1.png" class="71帧"></p>
+<h3 id="函数耗时排序-TOP-5"><a href="#函数耗时排序-TOP-5" class="headerlink" title="函数耗时排序 TOP 5"></a>函数耗时排序 TOP 5</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">Sample</th>
+<th style="text-align:left">Time(ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Lua Call Scene Change</td>
+<td style="text-align:left">328.17</td>
+</tr>
+<tr>
+<td style="text-align:left">Loading.ReadObject</td>
+<td style="text-align:left">193.53</td>
+</tr>
+<tr>
+<td style="text-align:left">WaitFrameClearMemory(Coroutine:MoveNext)</td>
+<td style="text-align:left">111.43</td>
+</tr>
+<tr>
+<td style="text-align:left">StartSwitchScene</td>
+<td style="text-align:left">92</td>
+</tr>
+<tr>
+<td style="text-align:left">GC.Collect</td>
+<td style="text-align:left">29.17</td>
+</tr>
+</tbody>
+</table>
+<p>综合峰值和排序, 得出结论:<br>热点数据存在 Lua 响应 Scene Change 事件的调用<br>ReadObject 为正常情况，可忽略。 第三条为 Lua 的 GC ，时长可接受<br>StartSwitchScene 数值有点高，添加更详细的 Sample 发现音频部分加载时长可能存在异常，但是时长还能接受，优先级不高。<br><img src="/2020/06/08/Unity性能检查/2.png" class="详情"></p>
+<h2 id="热点分析"><a href="#热点分析" class="headerlink" title="热点分析"></a>热点分析</h2><p>待续</p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>performance analysis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>排序</title>
     <url>/2020/04/08/sort/</url>
     <content><![CDATA[<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h2 id="冒泡排序-1"><a href="#冒泡排序-1" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
