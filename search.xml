@@ -77,7 +77,33 @@
 <p>队列和栈是两个老生常谈的结构，实现方法有多种。在这里就不详述了,需要的可以自行查找。</p>
 <h2 id="hash表"><a href="#hash表" class="headerlink" title="hash表"></a>hash表</h2><p>给定一个 key 值，通过 hask 函数 adress = hash(key), 获得 key 对应的固定地址。如果有多个key 返回同样的hash值,通过冲突解决函数来获得偏移地址。 hash 表虽然在实现的描述上性能优越，可变长度，快速访问。但是在编程语言中的实现还是需要落在实处，需要基础的数组，链表来实现。</p>
 <h2 id="脚本语言中的-Dictionary-类实现"><a href="#脚本语言中的-Dictionary-类实现" class="headerlink" title="脚本语言中的 Dictionary 类实现"></a>脚本语言中的 Dictionary 类实现</h2><p>这里举例一个字典的实现。<br>两个链表，一个 存储 hask 值 一个存储 value 的引用，从图中可以看出，虽然字典获得快速访问优势，但是付出了更多的空间代价。</p>
+<blockquote>
+<p>基本的数据结构类型</p>
+</blockquote>
+<h2 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h2><blockquote>
+<p>最常用的数据结构</p>
+</blockquote>
+<p>在内存中申请一块固定长度连续空间，可通过下标来访问<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">array = malloc(n);</span><br></pre></td></tr></table></figure></p>
+<p>因为内存需要提前申请，所以在使用上如果遇到可变长度的存储需求时，需要频繁申请新的内存块，会有严重的内存开销问题，所以引入了链表</p>
+<h2 id="链表-1"><a href="#链表-1" class="headerlink" title="链表"></a>链表</h2><p>以节点为存储单元，一个节点包含值与下一个节点的地址<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">linkNode = malloc(2);</span><br><span class="line">linkNode[1] = value;</span><br><span class="line">linkeNode[2] = &amp;nextNode;</span><br></pre></td></tr></table></figure></p>
+<p>可根据存储需求临时开辟存储空间。但是在访问单个节点上效率又没有数组来的快捷，需要从头节点逐个遍历至 i。<br>现代编程语言大多实现了 List 类型的数据结构综合两者的优缺点，实现了可变长度且可通过下标访问成员。</p>
+<h2 id="List-1"><a href="#List-1" class="headerlink" title="List"></a>List</h2><p>通过内部算法，动态开辟符合长度的内存空间来满足长度需求，不同编程语言的实现方法也会不一样。<br>一下简述一下个人对于 List 一种实现方案  </p>
+<blockquote>
+<p>设置一个合适长度的子数组 (subArray) 长度 k , 根据 List 的长度动态创建以及销毁子数组。<br>设置一个链表 (nodes) 存储子数组的头节点。<br>内置长度计数器 count<br>访问 List[i] = nodes[i % k][int(i / k)]  </p>
+</blockquote>
+<h2 id="队列-1"><a href="#队列-1" class="headerlink" title="队列"></a>队列</h2><p>先进先出，特点是优先处理最早加入的节点</p>
+<blockquote>
+<p>广度搜索中应用此结构辅助记录每次需要搜索的节点。</p>
+</blockquote>
+<h2 id="栈-1"><a href="#栈-1" class="headerlink" title="栈"></a>栈</h2><p>先进后出，特点是优先处理最近加入的节点</p>
+<blockquote>
+<p>深度搜索中应用此结构辅助记录每次需要搜索的节点。</p>
+</blockquote>
+<p>队列和栈是两个老生常谈的结构，实现方法有多种。在这里就不详述了,需要的可以自行查找。</p>
+<h2 id="hash表-1"><a href="#hash表-1" class="headerlink" title="hash表"></a>hash表</h2><p>给定一个 key 值，通过 hask 函数 adress = hash(key), 获得 key 对应的固定地址。如果有多个key 返回同样的hash值,通过冲突解决函数来获得偏移地址。 hash 表虽然在实现的描述上性能优越，可变长度，快速访问。但是在编程语言中的实现还是需要落在实处，需要基础的数组，链表来实现。</p>
+<h2 id="脚本语言中的-Dictionary-类实现-1"><a href="#脚本语言中的-Dictionary-类实现-1" class="headerlink" title="脚本语言中的 Dictionary 类实现"></a>脚本语言中的 Dictionary 类实现</h2><p>这里举例一个字典的实现。<br>两个链表，一个 存储 hask 值 一个存储 value 的引用，从图中可以看出，虽然字典获得快速访问优势，但是付出了更多的空间代价。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/2381726-fb4e3aaa4b98af99.png?imageMogr2/auto-orient/strip|imageView2/2/w/450/format/webp" alt="avatar"></p>
+<p>以上就是编程语言中常用的基础数据结构。后续高级的数据结构都无法脱离数组和链表这两种基础结构，都是以两者为存储单元，再配以存取逻辑来实现的。</p>
 <p>以上就是编程语言中常用的基础数据结构。后续高级的数据结构都无法脱离数组和链表这两种基础结构，都是以两者为存储单元，再配以存取逻辑来实现的。</p>
 ]]></content>
       <categories>
@@ -95,6 +121,10 @@
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
 <h2 id="研究"><a href="#研究" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
 <h3 id="测试-Attribute-的优化"><a href="#测试-Attribute-的优化" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
+<h1 id="目标-1"><a href="#目标-1" class="headerlink" title="目标"></a>目标</h1><p>项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化</p>
+<h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
+<h2 id="研究-1"><a href="#研究-1" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
+<h3 id="测试-Attribute-的优化-1"><a href="#测试-Attribute-的优化-1" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
 <p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png" alt="使用属性"></p>
 <p>未使用属性的 attribute 在反编译结果中未找到对应的声明<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png" alt="反编译结果"></p>
 <h3 id="Managed-bytecode-stripping-with-IL2CPP"><a href="#Managed-bytecode-stripping-with-IL2CPP" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png" alt="Strip Engine Code"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
@@ -110,6 +140,94 @@
 <h3 id="资源-ab-包"><a href="#资源-ab-包" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
 <p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png" alt="结果1"><br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png" alt="结果2"></p>
+<p>未使用属性的 attribute 在反编译结果中未找到对应的声明</p>
+<h1 id="目标-2"><a href="#目标-2" class="headerlink" title="目标"></a>目标</h1><p>项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化</p>
+<h2 id="问题-2"><a href="#问题-2" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
+<h2 id="研究-2"><a href="#研究-2" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
+<h3 id="测试-Attribute-的优化-2"><a href="#测试-Attribute-的优化-2" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png" alt="使用属性"></p>
+<p>未使用属性的 attribute 在反编译结果中未找到对应的声明<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png" alt="反编译结果"></p>
+<h3 id="Managed-bytecode-stripping-with-IL2CPP-1"><a href="#Managed-bytecode-stripping-with-IL2CPP-1" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png" alt="Strip Engine Code"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
+<ul>
+<li>如果代码中使用了反射来引用，可能会出现运行时引用类型被剔除的报错。</li>
+<li>项目打包中会有 prefab 资源的提前构建 ab 包，此构建过程在 UnityLinker 调用之前执行，一些类型的引用只存在与 Prefab 中，也会出现类型丢失问题。需要手动排查并引用进 mono 防止类型被剔除。</li>
+</ul>
+<h2 id="执行-1"><a href="#执行-1" class="headerlink" title="执行"></a>执行</h2><p>对裁剪后的包进行冒烟测试，查找并修复类型丢失的问题。</p>
+<blockquote>
+<p>运行时，unity 会抛出类型丢失的错误，并附带一个应用 ID， 通过 <a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDRefrence</a>  查找，获知对应的类型。</p>
+</blockquote>
+<h3 id="反射引用-1"><a href="#反射引用-1" class="headerlink" title="反射引用"></a>反射引用</h3><p>测试下来并未出现有相关类型报错的问题，说明代码中没有通过这种方法对类型进行引用。</p>
+<h3 id="资源-ab-包-1"><a href="#资源-ab-包-1" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png" alt="结果1"><br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png" alt="结果2"></p>
+<h3 id="Managed-bytecode-stripping-with-IL2CPP-2"><a href="#Managed-bytecode-stripping-with-IL2CPP-2" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><h1 id="目标-3"><a href="#目标-3" class="headerlink" title="目标"></a>目标</h1><p>项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化</p>
+<h2 id="问题-3"><a href="#问题-3" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
+<h2 id="研究-3"><a href="#研究-3" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
+<h3 id="测试-Attribute-的优化-3"><a href="#测试-Attribute-的优化-3" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png" alt="使用属性"></p>
+<p>未使用属性的 attribute 在反编译结果中未找到对应的声明<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png" alt="反编译结果"></p>
+<h3 id="Managed-bytecode-stripping-with-IL2CPP-3"><a href="#Managed-bytecode-stripping-with-IL2CPP-3" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png" alt="Strip Engine Code"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
+<ul>
+<li>如果代码中使用了反射来引用，可能会出现运行时引用类型被剔除的报错。</li>
+<li>项目打包中会有 prefab 资源的提前构建 ab 包，此构建过程在 UnityLinker 调用之前执行，一些类型的引用只存在与 Prefab 中，也会出现类型丢失问题。需要手动排查并引用进 mono 防止类型被剔除。</li>
+</ul>
+<h2 id="执行-2"><a href="#执行-2" class="headerlink" title="执行"></a>执行</h2><p>对裁剪后的包进行冒烟测试，查找并修复类型丢失的问题。</p>
+<blockquote>
+<p>运行时，unity 会抛出类型丢失的错误，并附带一个应用 ID， 通过 <a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDRefrence</a>  查找，获知对应的类型。</p>
+</blockquote>
+<h3 id="反射引用-2"><a href="#反射引用-2" class="headerlink" title="反射引用"></a>反射引用</h3><p>测试下来并未出现有相关类型报错的问题，说明代码中没有通过这种方法对类型进行引用。</p>
+<h3 id="资源-ab-包-2"><a href="#资源-ab-包-2" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="结果-2"><a href="#结果-2" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png" alt="结果1"><br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png" alt="结果2"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
+<ul>
+<li>如果代码中使用了反射来引用，可能会出现运行时引用类型被剔除的报错。</li>
+<li>项目打包中会有 prefab 资源的提前构建 ab 包，此构建过程在 UnityLinker 调用之前执行，一些类型的引用只存在与 Prefab 中，也会出现类型丢失问题。需要手动排查并引用进 mono 防止类型被剔除。</li>
+</ul>
+<h2 id="执行-3"><a href="#执行-3" class="headerlink" title="执行"></a>执行</h2><p>对裁剪后的包进行冒烟测试，查找并修复类型丢失的问题。</p>
+<blockquote>
+<p>运行时，unity 会抛出类型丢失的错误，并附带一个应用 ID， 通过 <a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDRefrence</a>  查找，获知对应的类型。</p>
+</blockquote>
+<h3 id="反射引用-3"><a href="#反射引用-3" class="headerlink" title="反射引用"></a>反射引用</h3><p>测试下来并未出现有相关类型报错的问题，说明代码中没有通过这种方法对类型进行引用。</p>
+<h3 id="资源-ab-包-3"><a href="#资源-ab-包-3" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="结果-3"><a href="#结果-3" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
+<h1 id="目标-4"><a href="#目标-4" class="headerlink" title="目标"></a>目标</h1><p>项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化</p>
+<h2 id="问题-4"><a href="#问题-4" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
+<h2 id="研究-4"><a href="#研究-4" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
+<h3 id="测试-Attribute-的优化-4"><a href="#测试-Attribute-的优化-4" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png" alt="使用属性"></p>
+<p>未使用属性的 attribute 在反编译结果中未找到对应的声明<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png" alt="反编译结果"></p>
+<h3 id="Managed-bytecode-stripping-with-IL2CPP-4"><a href="#Managed-bytecode-stripping-with-IL2CPP-4" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png" alt="Strip Engine Code"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
+<ul>
+<li>如果代码中使用了反射来引用，可能会出现运行时引用类型被剔除的报错。</li>
+<li>项目打包中会有 prefab 资源的提前构建 ab 包，此构建过程在 UnityLinker 调用之前执行，一些类型的引用只存在与 Prefab 中，也会出现类型丢失问题。需要手动排查并引用进 mono 防止类型被剔除。</li>
+</ul>
+<h2 id="执行-4"><a href="#执行-4" class="headerlink" title="执行"></a>执行</h2><p>对裁剪后的包进行冒烟测试，查找并修复类型丢失的问题。</p>
+<blockquote>
+<p>运行时，unity 会抛出类型丢失的错误，并附带一个应用 ID， 通过 <a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDRefrence</a>  查找，获知对应的类型。</p>
+</blockquote>
+<h3 id="反射引用-4"><a href="#反射引用-4" class="headerlink" title="反射引用"></a>反射引用</h3><p>测试下来并未出现有相关类型报错的问题，说明代码中没有通过这种方法对类型进行引用。</p>
+<h3 id="资源-ab-包-4"><a href="#资源-ab-包-4" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="结果-4"><a href="#结果-4" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png" alt="结果1"><br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png" alt="结果2"></p>
+<h1 id="目标-5"><a href="#目标-5" class="headerlink" title="目标"></a>目标</h1><p>项目中为了减少打包后的包体大小，针对 IL2CPP 的打包方案做包体缩小的优化</p>
+<h2 id="问题-5"><a href="#问题-5" class="headerlink" title="问题"></a>问题</h2><p>IL2CPP 虽然在性能上比 mono 有优势，但是当代码量增多时，包体会增大</p>
+<h2 id="研究-5"><a href="#研究-5" class="headerlink" title="研究"></a>研究</h2><p>2015 年的一篇帖子有提到 IL2CPP 在打包时会将未使用的属性打包进 IL 中，作者测评下来发现修改裁剪工具，剔除不需要的属性能减少 6% 的 IL2Cpp 大小。<br><a href="https://forum.unity.com/threads/suggestion-for-reducing-the-size-of-il2cpp-generated-executable.338986/" target="_blank" rel="noopener">原帖地址</a><br>在 unity2017 版本中，并没有作者所提到的 UnusedByteCodeStripper2.exe 工具，推测 unity 可能在后续版本更新中做了优化。</p>
+<h3 id="测试-Attribute-的优化-5"><a href="#测试-Attribute-的优化-5" class="headerlink" title="测试 Attribute 的优化"></a>测试 Attribute 的优化</h3><p>新建空的项目工程，创建 test.cs , 对其中的 test 字段使用属性元数据。 选择 IL2Cpp 打包方案打包 apk 包，使用 <a href="https://github.com/Perfare/Il2CppDumper" target="_blank" rel="noopener">IL2Cppdumper</a> ，反编译查看包体中的 libil2cpp.so ， 对比查看使用了属性以及未使用属性的打包结果。</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/1.png" alt="使用属性"></p>
+<p>未使用属性的 attribute 在反编译结果中未找到对应的声明<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/2.png" alt="反编译结果"></p>
+<h3 id="Managed-bytecode-stripping-with-IL2CPP-5"><a href="#Managed-bytecode-stripping-with-IL2CPP-5" class="headerlink" title="Managed bytecode stripping with IL2CPP"></a>Managed bytecode stripping with IL2CPP</h3><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/3.png" alt="Strip Engine Code"><br>查找文档发现 unity2017 已经新增了对 IL 代码的裁剪选项，此选项开启后会使用 UnityLinker(is a version of the <a href="https://github.com/mono/linker" target="_blank" rel="noopener">Mono IL Linker</a>) 对引擎中未引用的代码进行剔除。<br>剔除工作是基于代码的静态分析，需要注意以下情况，并处理。</p>
+<ul>
+<li>如果代码中使用了反射来引用，可能会出现运行时引用类型被剔除的报错。</li>
+<li>项目打包中会有 prefab 资源的提前构建 ab 包，此构建过程在 UnityLinker 调用之前执行，一些类型的引用只存在与 Prefab 中，也会出现类型丢失问题。需要手动排查并引用进 mono 防止类型被剔除。</li>
+</ul>
+<h2 id="执行-5"><a href="#执行-5" class="headerlink" title="执行"></a>执行</h2><p>对裁剪后的包进行冒烟测试，查找并修复类型丢失的问题。</p>
+<blockquote>
+<p>运行时，unity 会抛出类型丢失的错误，并附带一个应用 ID， 通过 <a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDRefrence</a>  查找，获知对应的类型。</p>
+</blockquote>
+<h3 id="反射引用-5"><a href="#反射引用-5" class="headerlink" title="反射引用"></a>反射引用</h3><p>测试下来并未出现有相关类型报错的问题，说明代码中没有通过这种方法对类型进行引用。</p>
+<h3 id="资源-ab-包-5"><a href="#资源-ab-包-5" class="headerlink" title="资源 ab 包"></a>资源 ab 包</h3><p>出现一些 Prefab 引用类型丢失的情况，新增 link.xml 放置在 Assets 下，指导 UnityLinker 的剔除保留。<br><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">linker</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"System"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"System.ComponentModel.TypeConverter"</span> <span class="attr">preserve</span>=<span class="string">"all"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"mscorlib"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">namespace</span> <span class="attr">fullname</span>=<span class="string">"System.Security.Cryptography"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">assembly</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Flare"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span> <span class="attr">fullname</span>=<span class="string">"UnityEngine.Avatar"</span> <span class="attr">preserve</span>=<span class="string">"all"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">assembly</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">linker</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="结果-5"><a href="#结果-5" class="headerlink" title="结果"></a>结果</h2><p>最终包体缩小 34MB</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/4.png" alt="结果1"><br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_6_2/5.png" alt="结果2"></p>
 ]]></content>
       <categories>
         <category>Unity</category>
@@ -122,6 +240,9 @@
     <title>UPR使用</title>
     <url>/2020/06/04/UPR%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。  </li>
+</ul>
+<h1 id="环境准备-1"><a href="#环境准备-1" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-1"><a href="#项目准备-1" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
 <li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
 <li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备"><a href="#测试包准备" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
 <li>导入 unitypackage</li>
@@ -144,7 +265,202 @@
 <li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
 <li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
 </ul>
-<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1>]]></content>
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>按要求填写相关项目信息。</p>
+<ul>
+<li>进入新建好的项目，点击新建测试</li>
+</ul>
+<h1 id="环境准备-2"><a href="#环境准备-2" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-2"><a href="#项目准备-2" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-1"><a href="#测试包准备-1" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-1"><a href="#anroid-平台-1" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-1"><a href="#windows-平台-1" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-1"><a href="#数据分析-1" class="headerlink" title="数据分析"></a>数据分析</h1><p>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。  </p>
+<h1 id="环境准备-3"><a href="#环境准备-3" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-3"><a href="#项目准备-3" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-2"><a href="#测试包准备-2" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-2"><a href="#anroid-平台-2" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-2"><a href="#windows-平台-2" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-2"><a href="#数据分析-2" class="headerlink" title="数据分析"></a>数据分析</h1><p>创建完成  </p>
+<h2 id="测试包准备-3"><a href="#测试包准备-3" class="headerlink" title="测试包准备"></a>测试包准备</h2><p>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</p>
+<ul>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-3"><a href="#anroid-平台-3" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试  </li>
+</ul>
+<h1 id="环境准备-4"><a href="#环境准备-4" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-4"><a href="#项目准备-4" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-4"><a href="#测试包准备-4" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-4"><a href="#anroid-平台-4" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-3"><a href="#windows-平台-3" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-3"><a href="#数据分析-3" class="headerlink" title="数据分析"></a>数据分析</h1><ul>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-4"><a href="#windows-平台-4" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动</p>
+<h1 id="环境准备-5"><a href="#环境准备-5" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-5"><a href="#项目准备-5" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-5"><a href="#测试包准备-5" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-5"><a href="#anroid-平台-5" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-5"><a href="#windows-平台-5" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-4"><a href="#数据分析-4" class="headerlink" title="数据分析"></a>数据分析</h1><ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test  </li>
+</ul>
+<h1 id="环境准备-6"><a href="#环境准备-6" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-6"><a href="#项目准备-6" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-6"><a href="#测试包准备-6" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-6"><a href="#anroid-平台-6" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-6"><a href="#windows-平台-6" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-5"><a href="#数据分析-5" class="headerlink" title="数据分析"></a>数据分析</h1><ul>
+<li>点击 Stop and ProcessData 结束测试  </li>
+</ul>
+<h1 id="环境准备-7"><a href="#环境准备-7" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-7"><a href="#项目准备-7" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-7"><a href="#测试包准备-7" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-7"><a href="#anroid-平台-7" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-7"><a href="#windows-平台-7" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-6"><a href="#数据分析-6" class="headerlink" title="数据分析"></a>数据分析</h1><ul>
+<li>前往网页项目，查看测试报告  </li>
+</ul>
+<h1 id="环境准备-8"><a href="#环境准备-8" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备-8"><a href="#项目准备-8" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备-8"><a href="#测试包准备-8" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台-8"><a href="#anroid-平台-8" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台-8"><a href="#windows-平台-8" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析-7"><a href="#数据分析-7" class="headerlink" title="数据分析"></a>数据分析</h1><h1 id="数据分析-8"><a href="#数据分析-8" class="headerlink" title="数据分析"></a>数据分析</h1>]]></content>
       <categories>
         <category>Unity</category>
       </categories>
@@ -155,7 +471,8 @@
   <entry>
     <title>UWA使用</title>
     <url>/2020/06/03/UWA%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容"><a href="#准备内容" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+    <content><![CDATA[<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容"><a href="#准备内容" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包</p>
+<h1 id="环境准备-1"><a href="#环境准备-1" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-1"><a href="#准备内容-1" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
 <h2 id="准备步骤"><a href="#准备步骤" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
 <h3 id="Unity-工程准备"><a href="#Unity-工程准备" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
 <li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
@@ -202,7 +519,445 @@
 </ul>
 <h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
 <h2 id="用例1"><a href="#用例1" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
-<h3 id="基本情况"><a href="#基本情况" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况"><a href="#CPU情况" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况"><a href="#GPU情况" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况"><a href="#内存情况" class="headerlink" title="内存情况"></a>内存情况</h3>]]></content>
+<h3 id="基本情况"><a href="#基本情况" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况"><a href="#CPU情况" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况"><a href="#GPU情况" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况"><a href="#内存情况" class="headerlink" title="内存情况"></a>内存情况</h3><h2 id="准备步骤-1"><a href="#准备步骤-1" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-1"><a href="#Unity-工程准备-1" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。</li>
+</ul>
+<h1 id="环境准备-2"><a href="#环境准备-2" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-2"><a href="#准备内容-2" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-2"><a href="#准备步骤-2" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-2"><a href="#Unity-工程准备-2" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-1"><a href="#目标测试平台准备-1" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-1"><a href="#发布目标平台包体-1" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-1"><a href="#测试步骤-1" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-1"><a href="#上传-online-1" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-1"><a href="#上传本地服务器-1" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-1"><a href="#数据分析-1" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-1"><a href="#用例1-1" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-1"><a href="#基本情况-1" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-1"><a href="#CPU情况-1" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-1"><a href="#GPU情况-1" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-1"><a href="#内存情况-1" class="headerlink" title="内存情况"></a>内存情况</h3><ul>
+<li>拖入 sdk 内的 prefab 至 scenes 下</li>
+</ul>
+<h1 id="环境准备-3"><a href="#环境准备-3" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-3"><a href="#准备内容-3" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-3"><a href="#准备步骤-3" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-3"><a href="#Unity-工程准备-3" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-2"><a href="#目标测试平台准备-2" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-2"><a href="#发布目标平台包体-2" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-2"><a href="#测试步骤-2" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-2"><a href="#上传-online-2" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-2"><a href="#上传本地服务器-2" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-2"><a href="#数据分析-2" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-2"><a href="#用例1-2" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-2"><a href="#基本情况-2" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-2"><a href="#CPU情况-2" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-2"><a href="#GPU情况-2" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-2"><a href="#内存情况-2" class="headerlink" title="内存情况"></a>内存情况</h3><p>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。</p>
+<h1 id="环境准备-4"><a href="#环境准备-4" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-4"><a href="#准备内容-4" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-4"><a href="#准备步骤-4" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-4"><a href="#Unity-工程准备-4" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-3"><a href="#目标测试平台准备-3" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-3"><a href="#发布目标平台包体-3" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-3"><a href="#测试步骤-3" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-3"><a href="#上传-online-3" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-3"><a href="#上传本地服务器-3" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-3"><a href="#数据分析-3" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-3"><a href="#用例1-3" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-3"><a href="#基本情况-3" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-3"><a href="#CPU情况-3" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-3"><a href="#GPU情况-3" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-3"><a href="#内存情况-3" class="headerlink" title="内存情况"></a>内存情况</h3><ul>
+<li>点开 tools/UWASDK 进行 SDK 的配置</li>
+</ul>
+<h1 id="环境准备-5"><a href="#环境准备-5" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-5"><a href="#准备内容-5" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-5"><a href="#准备步骤-5" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-5"><a href="#Unity-工程准备-5" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-4"><a href="#目标测试平台准备-4" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-4"><a href="#发布目标平台包体-4" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-4"><a href="#测试步骤-4" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-4"><a href="#上传-online-4" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-4"><a href="#上传本地服务器-4" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-4"><a href="#数据分析-4" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-4"><a href="#用例1-4" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-4"><a href="#基本情况-4" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-4"><a href="#CPU情况-4" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-4"><a href="#GPU情况-4" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-4"><a href="#内存情况-4" class="headerlink" title="内存情况"></a>内存情况</h3><p>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<pre><code>- GOT 模式  
+支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式
+- GPM 模式  
+只支持 Development Build 打包方式。支持四种测试模式，包含：
+
+    | 模式 | android | ios | windows |
+    | :----- | :----: | :----: | :----: |
+    |Overview（总体性能分析）| √ | √ | √ |
+    |Mono（Mono 堆内存分析）| √ | × | √ |
+    |Assets（运行时资源）| √ |√ | √ |
+    |Lua（Lua 性能分析）| √ |× | √ |
+注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持  
+Lua 模块仅适用于使用 Lua 的项目
+</code></pre><h3 id="目标测试平台准备-5"><a href="#目标测试平台准备-5" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-5"><a href="#发布目标平台包体-5" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-5"><a href="#测试步骤-5" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li>启动游戏后，在右上角的 UWA 窗口选择测试模式。</li>
+</ul>
+<h1 id="环境准备-6"><a href="#环境准备-6" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-6"><a href="#准备内容-6" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-6"><a href="#准备步骤-6" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-6"><a href="#Unity-工程准备-6" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-6"><a href="#目标测试平台准备-6" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-6"><a href="#发布目标平台包体-6" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-6"><a href="#测试步骤-6" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-5"><a href="#上传-online-5" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-5"><a href="#上传本地服务器-5" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-5"><a href="#数据分析-5" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-5"><a href="#用例1-5" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-5"><a href="#基本情况-5" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-5"><a href="#CPU情况-5" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-5"><a href="#GPU情况-5" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-5"><a href="#内存情况-5" class="headerlink" title="内存情况"></a>内存情况</h3><p>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+<ul>
+<li>点击 start 开启采集, 此 UI 可随意拖动  </li>
+</ul>
+<h1 id="环境准备-7"><a href="#环境准备-7" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-7"><a href="#准备内容-7" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-7"><a href="#准备步骤-7" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-7"><a href="#Unity-工程准备-7" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-7"><a href="#目标测试平台准备-7" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-7"><a href="#发布目标平台包体-7" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-7"><a href="#测试步骤-7" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-6"><a href="#上传-online-6" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-6"><a href="#上传本地服务器-6" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-6"><a href="#数据分析-6" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-6"><a href="#用例1-6" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-6"><a href="#基本情况-6" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-6"><a href="#CPU情况-6" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-6"><a href="#GPU情况-6" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-6"><a href="#内存情况-6" class="headerlink" title="内存情况"></a>内存情况</h3><ul>
+<li>点击 stop 停止采集  </li>
+</ul>
+<h1 id="环境准备-8"><a href="#环境准备-8" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-8"><a href="#准备内容-8" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-8"><a href="#准备步骤-8" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-8"><a href="#Unity-工程准备-8" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-8"><a href="#目标测试平台准备-8" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-8"><a href="#发布目标平台包体-8" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-8"><a href="#测试步骤-8" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-7"><a href="#上传-online-7" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-7"><a href="#上传本地服务器-7" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-7"><a href="#数据分析-7" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-7"><a href="#用例1-7" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-7"><a href="#基本情况-7" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-7"><a href="#CPU情况-7" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-7"><a href="#GPU情况-7" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-7"><a href="#内存情况-7" class="headerlink" title="内存情况"></a>内存情况</h3><ul>
+<li>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</li>
+</ul>
+<h3 id="上传-online-8"><a href="#上传-online-8" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-8"><a href="#上传本地服务器-8" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置</p>
+<h1 id="环境准备-9"><a href="#环境准备-9" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="准备内容-9"><a href="#准备内容-9" class="headerlink" title="准备内容"></a>准备内容</h2><p>下载最新的 UWA_SDK,包含了三个平台的 unitypackage 以及目标真机平台和 windows 的UWATools安装包<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/1.png" alt="SDK内容"></p>
+<h2 id="准备步骤-9"><a href="#准备步骤-9" class="headerlink" title="准备步骤"></a>准备步骤</h2><p>这里以安卓平台为例</p>
+<h3 id="Unity-工程准备-9"><a href="#Unity-工程准备-9" class="headerlink" title="Unity 工程准备"></a>Unity 工程准备</h3><ul>
+<li>导入目标平台的 unitypackage ( UWA_SDKV2.2.0_Android.unitypackage ) 到需要测试的 unity 工程内。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/6.png" alt="导入SDK"></li>
+<li>拖入 sdk 内的 prefab 至 scenes 下<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/5.png" alt="setPrefab"><br>Game窗口下出现 UWA 的插件 UI 并无报错信息，表示 SDK 接入成功。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/7.png" alt="SDK Completed"></li>
+<li><p>点开 tools/UWASDK 进行 SDK 的配置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/2.png" alt="SDK Completed"><br>按照警告的提示进行编译设置或者选择自动配置，GOT 和 GPM 的选项表示 SDK 能以那种测试模式进行测试</p>
+<ul>
+<li>GOT 模式<br>支持 Android，iOS 和 Windows 发布平台，支持 Development Build 和 Release 打包方式</li>
+<li><p>GPM 模式<br>只支持 Development Build 打包方式。支持四种测试模式，包含：</p>
+<p>  | 模式 | android | ios | windows |<br>  | :—– | :—-: | :—-: | :—-: |<br>  |Overview（总体性能分析）| √ | √ | √ |<br>  |Mono（Mono 堆内存分析）| √ | × | √ |<br>  |Assets（运行时资源）| √ |√ | √ |<br>  |Lua（Lua 性能分析）| √ |× | √ |<br>注：若使用 il2cpp 发布设置时，各发布平台的 Mono 模式均不支持<br>Lua 模块仅适用于使用 Lua 的项目</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="目标测试平台准备-9"><a href="#目标测试平台准备-9" class="headerlink" title="目标测试平台准备"></a>目标测试平台准备</h3><ul>
+<li>安装 UWA_tools 并登入账号</li>
+</ul>
+<h3 id="发布目标平台包体-9"><a href="#发布目标平台包体-9" class="headerlink" title="发布目标平台包体"></a>发布目标平台包体</h3><ul>
+<li>可以使用 SDK 的发布设置也可以用 buildplay 进行发布</li>
+<li>安装此测试包至测试平台</li>
+</ul>
+<h2 id="测试步骤-9"><a href="#测试步骤-9" class="headerlink" title="测试步骤"></a>测试步骤</h2><ul>
+<li><p>启动游戏后，在右上角的 UWA 窗口选择测试模式。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/8.png" alt="set Mode"><br>Direct Mode 点击后，按钮会变绿，并自动关闭项目。再次启动项目后，会自动进入上一次选择的模式，可以用来测试项目启动时的性能。</p>
+</li>
+<li><p>点击 start 开启采集, 此 UI 可随意拖动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/9.png" alt="start">  </p>
+</li>
+<li><p>点击 stop 停止采集<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/10.png" alt="start">  </p>
+</li>
+<li><p>打开 UWA_tools 上传测试数据，可选择上传至 online 也可以上传 local server</p>
+</li>
+</ul>
+<h3 id="上传-online-9"><a href="#上传-online-9" class="headerlink" title="上传 online"></a>上传 online</h3><ul>
+<li>在 UWA_Tools 工具下选择要上传的数据，选择 Online ，选择目标项目或者新建项目。点击提交数据</li>
+<li>打开 uwa 官网，进入 GOT_Oline 选项，选择上传的项目进行查看</li>
+</ul>
+<h3 id="上传本地服务器-9"><a href="#上传本地服务器-9" class="headerlink" title="上传本地服务器"></a>上传本地服务器</h3><p>如果没钱上传 online 也可以通过设置 local server 上传到本地服务器进行查看</p>
+<ul>
+<li>选择 GOT ，点击提交数据，</li>
+<li>在本地服务器也就是 UnityEditor 中进行查看。</li>
+</ul>
+<p>local server 设置<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-3/4.png" alt="set Mode"><br>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-8"><a href="#数据分析-8" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-8"><a href="#用例1-8" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-8"><a href="#基本情况-8" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-8"><a href="#CPU情况-8" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-8"><a href="#GPU情况-8" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-8"><a href="#内存情况-8" class="headerlink" title="内存情况"></a>内存情况</h3><p>点击 WIFI 运行。ip 地址是自动获取的本机地址，在 UWA_Tools 中输入服务器的地址（注意不需要输入端口）, 测试通过后即可提交数据<br>如果地址连接不上也可进入目标平台的资源管理器中找到对应数据复制到本地服务器的保存目录下。</p>
+<ul>
+<li>本地服务器保存地址在 Assets 同级下的 TestData 目录内</li>
+<li>目标平台测试数据地址在 UWA-DataCenter/ProfileData 内</li>
+</ul>
+<h1 id="数据分析-9"><a href="#数据分析-9" class="headerlink" title="数据分析"></a>数据分析</h1><p>待更新</p>
+<h2 id="用例1-9"><a href="#用例1-9" class="headerlink" title="用例1"></a>用例1</h2><p>用例简述</p>
+<h3 id="基本情况-9"><a href="#基本情况-9" class="headerlink" title="基本情况"></a>基本情况</h3><h3 id="CPU情况-9"><a href="#CPU情况-9" class="headerlink" title="CPU情况"></a>CPU情况</h3><h3 id="GPU情况-9"><a href="#GPU情况-9" class="headerlink" title="GPU情况"></a>GPU情况</h3><h3 id="内存情况-9"><a href="#内存情况-9" class="headerlink" title="内存情况"></a>内存情况</h3>]]></content>
       <categories>
         <category>Unity</category>
       </categories>
@@ -369,9 +1124,15 @@
       </tags>
   </entry>
   <entry>
+    <title>imgTest</title>
+    <url>/2020/06/08/imgTest/</url>
+    <content><![CDATA[<p><img src="/images/test.jpg" alt="imgs"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>排序</title>
     <url>/2020/04/08/sort/</url>
-    <content><![CDATA[<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
+    <content><![CDATA[<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h2 id="冒泡排序-1"><a href="#冒泡排序-1" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
 <p>每一轮，从数组头部开始，每两个元素比较大小按大小方向进行交换，直到数组末尾。然后不断的重复这个过程。</p>
 <blockquote>
 <p><strong>数量优化</strong>：每 n 轮比较，数组末尾 n 个元素都是确定的，不需要再进行比较。<br><strong>提前中断</strong>： 在一轮比较中，如果未发生元素交换，说明这个数组已经排序好了，可以中断排序。</p>
@@ -414,6 +1175,175 @@
 <li>归并排序<br>规模为 1 的子问题中，元素的稳定性不会收到破坏。在两个有序数组合并时,我们可以设置两个元素相等时，永远是前一个子数组的数子在前面，这样就保证了排序的稳定。</li>
 <li>快速排序<br>在一次划分大小数组结束时，会对 i 和 j 两个元素进行交换。这个交换过程会破坏稳定性。</li>
 </ul>
+<p>每一轮，从数组头部开始，每两个元素比较大小按大小方向进行交换，直到数组末尾。然后不断的重复这个过程。</p>
+<blockquote>
+<p><strong>数量优化</strong>：每 n 轮比较，数组末尾 n 个元素都是确定的，不需要再进行比较。<br><strong>提前中断</strong>： 在一轮比较中，如果未发生元素交换，说明这个数组已经排序好了，可以中断排序。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasChange</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++ ) &#123;</span><br><span class="line">        hasChange = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span> ; j &lt; nums.length - <span class="number">1</span> - i ; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j] &gt; nums[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = nums[j + <span class="number">1</span>];</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j];</span><br><span class="line">                nums[j] = tmp;</span><br><span class="line">                hasChange = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!hasChange) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-2"><a href="#算法的空间-2" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-4"><a href="#时间复杂度-4" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="插入排序-1"><a href="#插入排序-1" class="headerlink" title="插入排序"></a>插入排序</h2><h2 id="冒泡排序-2"><a href="#冒泡排序-2" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
+<p>每一轮，从数组头部开始，每两个元素比较大小按大小方向进行交换，直到数组末尾。然后不断的重复这个过程。</p>
+<blockquote>
+<p><strong>数量优化</strong>：每 n 轮比较，数组末尾 n 个元素都是确定的，不需要再进行比较。<br><strong>提前中断</strong>： 在一轮比较中，如果未发生元素交换，说明这个数组已经排序好了，可以中断排序。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasChange</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++ ) &#123;</span><br><span class="line">        hasChange = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span> ; j &lt; nums.length - <span class="number">1</span> - i ; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j] &gt; nums[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = nums[j + <span class="number">1</span>];</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j];</span><br><span class="line">                nums[j] = tmp;</span><br><span class="line">                hasChange = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!hasChange) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-3"><a href="#算法的空间-3" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-5"><a href="#时间复杂度-5" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="插入排序-2"><a href="#插入排序-2" class="headerlink" title="插入排序"></a>插入排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW-AJFICAFSirGa8QjY019.gif" alt="avatar"><br>不断的将未排序的元素插入已排序的数组内。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> current;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++) &#123;</span><br><span class="line">        current = nums[i]</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = i - <span class="number">1</span> ; j &gt;= <span class="number">0</span> ; j --) &#123;</span><br><span class="line">            <span class="keyword">if</span>(current &gt; nums[j]) &#123;</span><br><span class="line">                nums[j] = current;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-4"><a href="#算法的空间-4" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-6"><a href="#时间复杂度-6" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="归并排序-1"><a href="#归并排序-1" class="headerlink" title="归并排序"></a>归并排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiXKAR7hcAFhCcVK5jAM221.gif" alt="avatar"></p>
+<p>核心思路是把大问题分解成两个或者多个子问题，然后再不断的划分下去直到问题能直接解决, 原始问题的解就是子问题的合并。</p>
+<p>把数组不断分解成左右两个子数组，直到只剩单个元素，然后再进行排序合并</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums, lo , hi</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 问题到最小子集了</span></span><br><span class="line">    <span class="keyword">if</span>(lo &gt;= hi) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> mid = lo + int((hi - lo) / <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 分成两个子问题</span></span><br><span class="line">    sort(nums, lo, mid);</span><br><span class="line">    sort(nums, mid, hi);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合并两个子问题</span></span><br><span class="line">    merge(nums, lo, mid, hi);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">nums, lo ,mid, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> copy = nums.clone();</span><br><span class="line">    <span class="keyword">var</span> k = lo, i = lo, j = mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(k &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">if</span>(copy[i] &lt; copy[j]) &#123;</span><br><span class="line">            nums[k] = copy[i];</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(copy[j] &lt; copy[i]) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(i &gt; mid) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++ ;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(j &gt; hi) &#123;</span><br><span class="line">            nums[k] = copy[i]</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-2"><a href="#空间复杂度-2" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>合并是需要拷贝原数组，所以是 O(n)</p>
+<h3 id="时间复杂度-7"><a href="#时间复杂度-7" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>对于规模为 n 的问题来说，每次都是分解成 n / 2 的问题，直到规模为 1 ，类似一个二叉树的结构。二叉树的平均深度是 log(n), 所以需要进行 log(n) 层的划分，每一层都要进行一次合并，合并的元素是所有的元素规模为 n ，也就是 O(n) 的复杂度。 那么真题的复杂度就是 O(nlogn)</p>
+<h2 id="快速排序-1"><a href="#快速排序-1" class="headerlink" title="快速排序"></a>快速排序</h2><p>在分治思想上再进一步优化的就是快速排序，在数组中挑选一个基准值，分解成较大和较小的两个子数组，然后以此继续分解子数组直到问题规模为1。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums,int lo, int hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = partiton(nums, lo, hi)</span><br><span class="line">    sort(nums, lo , p - <span class="number">1</span>)</span><br><span class="line">    sort(nums, p + <span class="number">1</span>, hi)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partiton</span>(<span class="params">nums, lo, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = swap(nums,random(lo, hi), hi)</span><br><span class="line">    <span class="keyword">var</span> i,j</span><br><span class="line">    <span class="keyword">for</span>(i = lo , j  = lo, j &lt; hi ; j ++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[j] &lt; nums[hi]) &#123;</span><br><span class="line">            swap(nums, i , j);</span><br><span class="line">            i ++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i , j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-3"><a href="#空间复杂度-3" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>因为不需要合并操作，只采用交换，所以只要 O(1)</p>
+<h3 id="时间复杂度-8"><a href="#时间复杂度-8" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>时间上和归并re排序一样是分成了 logn 层， 每一层都要进行 n - 1 次比较，所以复杂度是 O(nlogn)</p>
+<h2 id="拓扑排序-1"><a href="#拓扑排序-1" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/2B/CgotOV2IiXqAM6cFAFNa8qMI_JU260.gif" alt="avatar"></p>
+<p>和前面介绍的几种排序不同，拓扑排序应用的场合不再是一个简单的数组，而是研究图论里面顶点和顶点连线之间的性质。拓扑排序就是要将这些顶点按照相连的性质进行排序。</p>
+<p>拓扑排序的前提是：  </p>
+<ol>
+<li>图必须没有环</li>
+<li>图必须是有向图</li>
+</ol>
+<p>统计每个顶点的前驱（入度）, 选择入度为 0 的顶点输出。删除此顶点以及以此顶点为起点的有向边。更新顶点前驱，再次选择入度为 0 的顶点输出、剪边。 持续下去直到最后一个顶点。</p>
+<p>算法实现上，核心点是对图的搜索。图的搜索算法分广度搜索和深度搜索。</p>
+<h2 id="算法的稳定性-1"><a href="#算法的稳定性-1" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><ul>
+<li>冒泡排序<br>每次排序都只是相邻元素交换位置，即使元素相等，但是在交换过程中先后顺序并不会发生变化。算法是稳定的</li>
+<li>插入排序<br>插入排序每次都是插入一个有序数组，也不会改变元素的先后关系，算法是稳定的</li>
+<li>归并排序<br>规模为 1 的子问题中，元素的稳定性不会收到破坏。在两个有序数组合并时,我们可以设置两个元素相等时，永远是前一个子数组的数子在前面，这样就保证了排序的稳定。</li>
+<li>快速排序<br>在一次划分大小数组结束时，会对 i 和 j 两个元素进行交换。这个交换过程会破坏稳定性。</li>
+</ul>
+<p>不断的将未排序的元素插入已排序的数组内。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> current;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++) &#123;</span><br><span class="line">        current = nums[i]</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = i - <span class="number">1</span> ; j &gt;= <span class="number">0</span> ; j --) &#123;</span><br><span class="line">            <span class="keyword">if</span>(current &gt; nums[j]) &#123;</span><br><span class="line">                nums[j] = current;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-5"><a href="#算法的空间-5" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-9"><a href="#时间复杂度-9" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="归并排序-2"><a href="#归并排序-2" class="headerlink" title="归并排序"></a>归并排序</h2><h2 id="冒泡排序-3"><a href="#冒泡排序-3" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
+<p>每一轮，从数组头部开始，每两个元素比较大小按大小方向进行交换，直到数组末尾。然后不断的重复这个过程。</p>
+<blockquote>
+<p><strong>数量优化</strong>：每 n 轮比较，数组末尾 n 个元素都是确定的，不需要再进行比较。<br><strong>提前中断</strong>： 在一轮比较中，如果未发生元素交换，说明这个数组已经排序好了，可以中断排序。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasChange</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++ ) &#123;</span><br><span class="line">        hasChange = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span> ; j &lt; nums.length - <span class="number">1</span> - i ; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j] &gt; nums[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = nums[j + <span class="number">1</span>];</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j];</span><br><span class="line">                nums[j] = tmp;</span><br><span class="line">                hasChange = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!hasChange) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-6"><a href="#算法的空间-6" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-10"><a href="#时间复杂度-10" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="插入排序-3"><a href="#插入排序-3" class="headerlink" title="插入排序"></a>插入排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW-AJFICAFSirGa8QjY019.gif" alt="avatar"><br>不断的将未排序的元素插入已排序的数组内。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> current;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++) &#123;</span><br><span class="line">        current = nums[i]</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = i - <span class="number">1</span> ; j &gt;= <span class="number">0</span> ; j --) &#123;</span><br><span class="line">            <span class="keyword">if</span>(current &gt; nums[j]) &#123;</span><br><span class="line">                nums[j] = current;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-7"><a href="#算法的空间-7" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-11"><a href="#时间复杂度-11" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="归并排序-3"><a href="#归并排序-3" class="headerlink" title="归并排序"></a>归并排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiXKAR7hcAFhCcVK5jAM221.gif" alt="avatar"></p>
+<p>核心思路是把大问题分解成两个或者多个子问题，然后再不断的划分下去直到问题能直接解决, 原始问题的解就是子问题的合并。</p>
+<p>把数组不断分解成左右两个子数组，直到只剩单个元素，然后再进行排序合并</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums, lo , hi</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 问题到最小子集了</span></span><br><span class="line">    <span class="keyword">if</span>(lo &gt;= hi) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> mid = lo + int((hi - lo) / <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 分成两个子问题</span></span><br><span class="line">    sort(nums, lo, mid);</span><br><span class="line">    sort(nums, mid, hi);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合并两个子问题</span></span><br><span class="line">    merge(nums, lo, mid, hi);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">nums, lo ,mid, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> copy = nums.clone();</span><br><span class="line">    <span class="keyword">var</span> k = lo, i = lo, j = mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(k &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">if</span>(copy[i] &lt; copy[j]) &#123;</span><br><span class="line">            nums[k] = copy[i];</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(copy[j] &lt; copy[i]) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(i &gt; mid) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++ ;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(j &gt; hi) &#123;</span><br><span class="line">            nums[k] = copy[i]</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-4"><a href="#空间复杂度-4" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>合并是需要拷贝原数组，所以是 O(n)</p>
+<h3 id="时间复杂度-12"><a href="#时间复杂度-12" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>对于规模为 n 的问题来说，每次都是分解成 n / 2 的问题，直到规模为 1 ，类似一个二叉树的结构。二叉树的平均深度是 log(n), 所以需要进行 log(n) 层的划分，每一层都要进行一次合并，合并的元素是所有的元素规模为 n ，也就是 O(n) 的复杂度。 那么真题的复杂度就是 O(nlogn)</p>
+<h2 id="快速排序-2"><a href="#快速排序-2" class="headerlink" title="快速排序"></a>快速排序</h2><p>在分治思想上再进一步优化的就是快速排序，在数组中挑选一个基准值，分解成较大和较小的两个子数组，然后以此继续分解子数组直到问题规模为1。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums,int lo, int hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = partiton(nums, lo, hi)</span><br><span class="line">    sort(nums, lo , p - <span class="number">1</span>)</span><br><span class="line">    sort(nums, p + <span class="number">1</span>, hi)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partiton</span>(<span class="params">nums, lo, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = swap(nums,random(lo, hi), hi)</span><br><span class="line">    <span class="keyword">var</span> i,j</span><br><span class="line">    <span class="keyword">for</span>(i = lo , j  = lo, j &lt; hi ; j ++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[j] &lt; nums[hi]) &#123;</span><br><span class="line">            swap(nums, i , j);</span><br><span class="line">            i ++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i , j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-5"><a href="#空间复杂度-5" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>因为不需要合并操作，只采用交换，所以只要 O(1)</p>
+<h3 id="时间复杂度-13"><a href="#时间复杂度-13" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>时间上和归并re排序一样是分成了 logn 层， 每一层都要进行 n - 1 次比较，所以复杂度是 O(nlogn)</p>
+<h2 id="拓扑排序-2"><a href="#拓扑排序-2" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/2B/CgotOV2IiXqAM6cFAFNa8qMI_JU260.gif" alt="avatar"></p>
+<p>和前面介绍的几种排序不同，拓扑排序应用的场合不再是一个简单的数组，而是研究图论里面顶点和顶点连线之间的性质。拓扑排序就是要将这些顶点按照相连的性质进行排序。</p>
+<p>拓扑排序的前提是：  </p>
+<ol>
+<li>图必须没有环</li>
+<li>图必须是有向图</li>
+</ol>
+<p>统计每个顶点的前驱（入度）, 选择入度为 0 的顶点输出。删除此顶点以及以此顶点为起点的有向边。更新顶点前驱，再次选择入度为 0 的顶点输出、剪边。 持续下去直到最后一个顶点。</p>
+<p>算法实现上，核心点是对图的搜索。图的搜索算法分广度搜索和深度搜索。</p>
+<h2 id="算法的稳定性-2"><a href="#算法的稳定性-2" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><ul>
+<li>冒泡排序<br>每次排序都只是相邻元素交换位置，即使元素相等，但是在交换过程中先后顺序并不会发生变化。算法是稳定的</li>
+<li>插入排序<br>插入排序每次都是插入一个有序数组，也不会改变元素的先后关系，算法是稳定的</li>
+<li>归并排序<br>规模为 1 的子问题中，元素的稳定性不会收到破坏。在两个有序数组合并时,我们可以设置两个元素相等时，永远是前一个子数组的数子在前面，这样就保证了排序的稳定。</li>
+<li>快速排序<br>在一次划分大小数组结束时，会对 i 和 j 两个元素进行交换。这个交换过程会破坏稳定性。</li>
+</ul>
+<p>核心思路是把大问题分解成两个或者多个子问题，然后再不断的划分下去直到问题能直接解决, 原始问题的解就是子问题的合并。</p>
+<p>把数组不断分解成左右两个子数组，直到只剩单个元素，然后再进行排序合并</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums, lo , hi</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 问题到最小子集了</span></span><br><span class="line">    <span class="keyword">if</span>(lo &gt;= hi) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> mid = lo + int((hi - lo) / <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 分成两个子问题</span></span><br><span class="line">    sort(nums, lo, mid);</span><br><span class="line">    sort(nums, mid, hi);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合并两个子问题</span></span><br><span class="line">    merge(nums, lo, mid, hi);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">nums, lo ,mid, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> copy = nums.clone();</span><br><span class="line">    <span class="keyword">var</span> k = lo, i = lo, j = mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(k &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">if</span>(copy[i] &lt; copy[j]) &#123;</span><br><span class="line">            nums[k] = copy[i];</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(copy[j] &lt; copy[i]) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(i &gt; mid) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++ ;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(j &gt; hi) &#123;</span><br><span class="line">            nums[k] = copy[i]</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-6"><a href="#空间复杂度-6" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>合并是需要拷贝原数组，所以是 O(n)</p>
+<h3 id="时间复杂度-14"><a href="#时间复杂度-14" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>对于规模为 n 的问题来说，每次都是分解成 n / 2 的问题，直到规模为 1 ，类似一个二叉树的结构。二叉树的平均深度是 log(n), 所以需要进行 log(n) 层的划分，每一层都要进行一次合并，合并的元素是所有的元素规模为 n ，也就是 O(n) 的复杂度。 那么真题的复杂度就是 O(nlogn)</p>
+<h2 id="快速排序-3"><a href="#快速排序-3" class="headerlink" title="快速排序"></a>快速排序</h2><p>在分治思想上再进一步优化的就是快速排序，在数组中挑选一个基准值，分解成较大和较小的两个子数组，然后以此继续分解子数组直到问题规模为1。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums,int lo, int hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = partiton(nums, lo, hi)</span><br><span class="line">    sort(nums, lo , p - <span class="number">1</span>)</span><br><span class="line">    sort(nums, p + <span class="number">1</span>, hi)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partiton</span>(<span class="params">nums, lo, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = swap(nums,random(lo, hi), hi)</span><br><span class="line">    <span class="keyword">var</span> i,j</span><br><span class="line">    <span class="keyword">for</span>(i = lo , j  = lo, j &lt; hi ; j ++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[j] &lt; nums[hi]) &#123;</span><br><span class="line">            swap(nums, i , j);</span><br><span class="line">            i ++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i , j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-7"><a href="#空间复杂度-7" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>因为不需要合并操作，只采用交换，所以只要 O(1)</p>
+<h3 id="时间复杂度-15"><a href="#时间复杂度-15" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>时间上和归并re排序一样是分成了 logn 层， 每一层都要进行 n - 1 次比较，所以复杂度是 O(nlogn)</p>
+<h2 id="拓扑排序-3"><a href="#拓扑排序-3" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><h2 id="冒泡排序-4"><a href="#冒泡排序-4" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
+<p>每一轮，从数组头部开始，每两个元素比较大小按大小方向进行交换，直到数组末尾。然后不断的重复这个过程。</p>
+<blockquote>
+<p><strong>数量优化</strong>：每 n 轮比较，数组末尾 n 个元素都是确定的，不需要再进行比较。<br><strong>提前中断</strong>： 在一轮比较中，如果未发生元素交换，说明这个数组已经排序好了，可以中断排序。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> hasChange</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++ ) &#123;</span><br><span class="line">        hasChange = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = <span class="number">0</span> ; j &lt; nums.length - <span class="number">1</span> - i ; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[j] &gt; nums[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">var</span> tmp = nums[j + <span class="number">1</span>];</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j];</span><br><span class="line">                nums[j] = tmp;</span><br><span class="line">                hasChange = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(!hasChange) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-8"><a href="#算法的空间-8" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-16"><a href="#时间复杂度-16" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="插入排序-4"><a href="#插入排序-4" class="headerlink" title="插入排序"></a>插入排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW-AJFICAFSirGa8QjY019.gif" alt="avatar"><br>不断的将未排序的元素插入已排序的数组内。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> current;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span> ; i &lt; nums.length ; i ++) &#123;</span><br><span class="line">        current = nums[i]</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> j = i - <span class="number">1</span> ; j &gt;= <span class="number">0</span> ; j --) &#123;</span><br><span class="line">            <span class="keyword">if</span>(current &gt; nums[j]) &#123;</span><br><span class="line">                nums[j] = current;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                nums[j + <span class="number">1</span>] = nums[j]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法的空间-9"><a href="#算法的空间-9" class="headerlink" title="算法的空间"></a>算法的空间</h3><p>复杂度上是 o(1)， </p>
+<h3 id="时间复杂度-17"><a href="#时间复杂度-17" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li>最佳：正序数组，需要 n-1 次比较，复杂度为 O(n) 。</li>
+<li>最坏：逆序数组，需要 n * (n - 1) /  2 次比较，复杂度为 O(n<sup>2</sup>) 。</li>
+</ul>
+<h2 id="归并排序-4"><a href="#归并排序-4" class="headerlink" title="归并排序"></a>归并排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiXKAR7hcAFhCcVK5jAM221.gif" alt="avatar"></p>
+<p>核心思路是把大问题分解成两个或者多个子问题，然后再不断的划分下去直到问题能直接解决, 原始问题的解就是子问题的合并。</p>
+<p>把数组不断分解成左右两个子数组，直到只剩单个元素，然后再进行排序合并</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums, lo , hi</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 问题到最小子集了</span></span><br><span class="line">    <span class="keyword">if</span>(lo &gt;= hi) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> mid = lo + int((hi - lo) / <span class="number">2</span>);</span><br><span class="line">    <span class="comment">// 分成两个子问题</span></span><br><span class="line">    sort(nums, lo, mid);</span><br><span class="line">    sort(nums, mid, hi);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合并两个子问题</span></span><br><span class="line">    merge(nums, lo, mid, hi);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">nums, lo ,mid, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> copy = nums.clone();</span><br><span class="line">    <span class="keyword">var</span> k = lo, i = lo, j = mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(k &lt;= hi) &#123;</span><br><span class="line">        <span class="keyword">if</span>(copy[i] &lt; copy[j]) &#123;</span><br><span class="line">            nums[k] = copy[i];</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(copy[j] &lt; copy[i]) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(i &gt; mid) &#123;</span><br><span class="line">            nums[k] = copy[j]</span><br><span class="line">            k ++ ;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125;</span><br><span class="line">        elseif(j &gt; hi) &#123;</span><br><span class="line">            nums[k] = copy[i]</span><br><span class="line">            k ++;</span><br><span class="line">            i ++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-8"><a href="#空间复杂度-8" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>合并是需要拷贝原数组，所以是 O(n)</p>
+<h3 id="时间复杂度-18"><a href="#时间复杂度-18" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>对于规模为 n 的问题来说，每次都是分解成 n / 2 的问题，直到规模为 1 ，类似一个二叉树的结构。二叉树的平均深度是 log(n), 所以需要进行 log(n) 层的划分，每一层都要进行一次合并，合并的元素是所有的元素规模为 n ，也就是 O(n) 的复杂度。 那么真题的复杂度就是 O(nlogn)</p>
+<h2 id="快速排序-4"><a href="#快速排序-4" class="headerlink" title="快速排序"></a>快速排序</h2><p>在分治思想上再进一步优化的就是快速排序，在数组中挑选一个基准值，分解成较大和较小的两个子数组，然后以此继续分解子数组直到问题规模为1。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sort</span>(<span class="params">nums,int lo, int hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = partiton(nums, lo, hi)</span><br><span class="line">    sort(nums, lo , p - <span class="number">1</span>)</span><br><span class="line">    sort(nums, p + <span class="number">1</span>, hi)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">partiton</span>(<span class="params">nums, lo, hi</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> p = swap(nums,random(lo, hi), hi)</span><br><span class="line">    <span class="keyword">var</span> i,j</span><br><span class="line">    <span class="keyword">for</span>(i = lo , j  = lo, j &lt; hi ; j ++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[j] &lt; nums[hi]) &#123;</span><br><span class="line">            swap(nums, i , j);</span><br><span class="line">            i ++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap(nums, i , j)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="空间复杂度-9"><a href="#空间复杂度-9" class="headerlink" title="空间复杂度"></a>空间复杂度</h3><p>因为不需要合并操作，只采用交换，所以只要 O(1)</p>
+<h3 id="时间复杂度-19"><a href="#时间复杂度-19" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>时间上和归并re排序一样是分成了 logn 层， 每一层都要进行 n - 1 次比较，所以复杂度是 O(nlogn)</p>
+<h2 id="拓扑排序-4"><a href="#拓扑排序-4" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/2B/CgotOV2IiXqAM6cFAFNa8qMI_JU260.gif" alt="avatar"></p>
+<p>和前面介绍的几种排序不同，拓扑排序应用的场合不再是一个简单的数组，而是研究图论里面顶点和顶点连线之间的性质。拓扑排序就是要将这些顶点按照相连的性质进行排序。</p>
+<p>拓扑排序的前提是：  </p>
+<ol>
+<li>图必须没有环</li>
+<li>图必须是有向图</li>
+</ol>
+<p>统计每个顶点的前驱（入度）, 选择入度为 0 的顶点输出。删除此顶点以及以此顶点为起点的有向边。更新顶点前驱，再次选择入度为 0 的顶点输出、剪边。 持续下去直到最后一个顶点。</p>
+<p>算法实现上，核心点是对图的搜索。图的搜索算法分广度搜索和深度搜索。</p>
+<h2 id="算法的稳定性-3"><a href="#算法的稳定性-3" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><ul>
+<li>冒泡排序<br>每次排序都只是相邻元素交换位置，即使元素相等，但是在交换过程中先后顺序并不会发生变化。算法是稳定的</li>
+<li>插入排序<br>插入排序每次都是插入一个有序数组，也不会改变元素的先后关系，算法是稳定的</li>
+<li>归并排序<br>规模为 1 的子问题中，元素的稳定性不会收到破坏。在两个有序数组合并时,我们可以设置两个元素相等时，永远是前一个子数组的数子在前面，这样就保证了排序的稳定。</li>
+<li>快速排序<br>在一次划分大小数组结束时，会对 i 和 j 两个元素进行交换。这个交换过程会破坏稳定性。</li>
+</ul>
+<p>和前面介绍的几种排序不同，拓扑排序应用的场合不再是一个简单的数组，而是研究图论里面顶点和顶点连线之间的性质。拓扑排序就是要将这些顶点按照相连的性质进行排序。</p>
+<p>拓扑排序的前提是：  </p>
+<ol>
+<li>图必须没有环</li>
+<li>图必须是有向图</li>
+</ol>
+<p>统计每个顶点的前驱（入度）, 选择入度为 0 的顶点输出。删除此顶点以及以此顶点为起点的有向边。更新顶点前驱，再次选择入度为 0 的顶点输出、剪边。 持续下去直到最后一个顶点。</p>
+<p>算法实现上，核心点是对图的搜索。图的搜索算法分广度搜索和深度搜索。</p>
+<h2 id="算法的稳定性-4"><a href="#算法的稳定性-4" class="headerlink" title="算法的稳定性"></a>算法的稳定性</h2><ul>
+<li>冒泡排序<br>每次排序都只是相邻元素交换位置，即使元素相等，但是在交换过程中先后顺序并不会发生变化。算法是稳定的</li>
+<li>插入排序<br>插入排序每次都是插入一个有序数组，也不会改变元素的先后关系，算法是稳定的</li>
+<li>归并排序<br>规模为 1 的子问题中，元素的稳定性不会收到破坏。在两个有序数组合并时,我们可以设置两个元素相等时，永远是前一个子数组的数子在前面，这样就保证了排序的稳定。</li>
+<li>快速排序<br>在一次划分大小数组结束时，会对 i 和 j 两个元素进行交换。这个交换过程会破坏稳定性。</li>
+</ul>
 ]]></content>
       <categories>
         <category>算法</category>
@@ -424,9 +1354,15 @@
       </tags>
   </entry>
   <entry>
+    <title>testimage</title>
+    <url>/2020/06/08/testimage/</url>
+    <content><![CDATA[<img src="/2020/06/08/testimage/test.jpg" class="test">  ]]></content>
+  </entry>
+  <entry>
     <title>Unity序列化</title>
     <url>/2020/05/18/unity%E5%BA%8F%E5%88%97%E5%8C%96/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程</p>
+<h1 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h1><p>序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程</p>
 <p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/1.png" alt="avatar"></p>
 <h1 id="Unity-如何序列化"><a href="#Unity-如何序列化" class="headerlink" title="Unity 如何序列化"></a>Unity 如何序列化</h1><p>Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。</p>
 <h2 id="MonoBehavior-编写"><a href="#MonoBehavior-编写" class="headerlink" title="MonoBehavior 编写"></a>MonoBehavior 编写</h2><p>可被序列化的字段必须符合以下几点：</p>
@@ -502,6 +1438,231 @@
 <li>引用值无法在 UnityEngine.Object 实例间进行共享</li>
 </ul>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在使用 Unity 的序列化时必须明确了解那些字段能够被序列化，从而减少因为序列化，反序列化后对象数据不一致导致的问题。</p>
+<h1 id="Unity-如何序列化-1"><a href="#Unity-如何序列化-1" class="headerlink" title="Unity 如何序列化"></a>Unity 如何序列化</h1><p>Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。</p>
+<h2 id="MonoBehavior-编写-1"><a href="#MonoBehavior-编写-1" class="headerlink" title="MonoBehavior 编写"></a>MonoBehavior 编写</h2><p>可被序列化的字段必须符合以下几点：</p>
+<ul>
+<li>设为public，或者添加[SerializeField]属性</li>
+<li>不要设为static</li>
+<li>不要设为const</li>
+<li>不要设为readonly</li>
+<li>字段类型必须是可以序列化的类型</li>
+</ul>
+<h2 id="哪些类型可以序列化？-1"><a href="#哪些类型可以序列化？-1" class="headerlink" title="哪些类型可以序列化？"></a>哪些类型可以序列化？</h2><ul>
+<li>来自UntiyEngine.Object的对象引用</li>
+<li>有 [Serializable] 属性的自定义非抽象类</li>
+<li>基础数据类型（int，float，double，bool，string等等）</li>
+<li>可序列化的数组Array字段类型</li>
+<li>可序列化的泛型列表List<t>字段类型<br>结构体</t></li>
+</ul>
+<blockquote>
+<p>一个很常见的不可被序列化的数据结构：<strong>Dictionaries</strong>，即使把它们声明为公有并且有 [SerializeField] 属性。在开发游戏时要记住这点。</p>
+</blockquote>
+<h2 id="自定义序列化类型-1"><a href="#自定义序列化类型-1" class="headerlink" title="自定义序列化类型"></a>自定义序列化类型</h2><p>添加 [System.Serializable] 修饰符</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">System.Serializable</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> BehaviorNode obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="会出现的问题-1"><a href="#会出现的问题-1" class="headerlink" title="会出现的问题"></a>会出现的问题</h3><ul>
+<li>任然依赖于 MonoBehaviour 并且需要 GameObject 才可存在</li>
+<li>无法支持多态，对一个基类数组添加三个同样的子类对象，序列化后是三个基类对象。</li>
+<li>耦合引用, 对一个泛型列表添加同一个对象三次，序列化后是三个不同的对象。</li>
+<li>递归声明<br>自定义类型的序列化不支持空引用，在递归引用时，会陷入循环创建的的死循环。 unity 为解决这个问题，限制了最大层深度为 7 层。</li>
+</ul>
+<h3 id="解决方法-ScriptableObjects-1"><a href="#解决方法-ScriptableObjects-1" class="headerlink" title="解决方法 ScriptableObjects"></a>解决方法 ScriptableObjects</h3><ul>
+<li>可存储为 xx.asset 资源，不再依托于 GameObject</li>
+<li>ScriptableObjects 继承自 Unity.Object， 在序列化时创建的是对象的引用。</li>
+</ul>
+<h1 id="Unity-Edtior-对序列化数据的使用-1"><a href="#Unity-Edtior-对序列化数据的使用-1" class="headerlink" title="Unity Edtior 对序列化数据的使用"></a>Unity Edtior 对序列化数据的使用</h1><h1 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h1><p>序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/1.png" alt="avatar"></p>
+<h1 id="Unity-如何序列化-2"><a href="#Unity-如何序列化-2" class="headerlink" title="Unity 如何序列化"></a>Unity 如何序列化</h1><p>Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。</p>
+<h2 id="MonoBehavior-编写-2"><a href="#MonoBehavior-编写-2" class="headerlink" title="MonoBehavior 编写"></a>MonoBehavior 编写</h2><p>可被序列化的字段必须符合以下几点：</p>
+<ul>
+<li>设为public，或者添加[SerializeField]属性</li>
+<li>不要设为static</li>
+<li>不要设为const</li>
+<li>不要设为readonly</li>
+<li>字段类型必须是可以序列化的类型</li>
+</ul>
+<h2 id="哪些类型可以序列化？-2"><a href="#哪些类型可以序列化？-2" class="headerlink" title="哪些类型可以序列化？"></a>哪些类型可以序列化？</h2><ul>
+<li>来自UntiyEngine.Object的对象引用</li>
+<li>有 [Serializable] 属性的自定义非抽象类</li>
+<li>基础数据类型（int，float，double，bool，string等等）</li>
+<li>可序列化的数组Array字段类型</li>
+<li>可序列化的泛型列表List<t>字段类型<br>结构体</t></li>
+</ul>
+<blockquote>
+<p>一个很常见的不可被序列化的数据结构：<strong>Dictionaries</strong>，即使把它们声明为公有并且有 [SerializeField] 属性。在开发游戏时要记住这点。</p>
+</blockquote>
+<h2 id="自定义序列化类型-2"><a href="#自定义序列化类型-2" class="headerlink" title="自定义序列化类型"></a>自定义序列化类型</h2><p>添加 [System.Serializable] 修饰符</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">System.Serializable</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> BehaviorNode obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="会出现的问题-2"><a href="#会出现的问题-2" class="headerlink" title="会出现的问题"></a>会出现的问题</h3><ul>
+<li>任然依赖于 MonoBehaviour 并且需要 GameObject 才可存在</li>
+<li>无法支持多态，对一个基类数组添加三个同样的子类对象，序列化后是三个基类对象。</li>
+<li>耦合引用, 对一个泛型列表添加同一个对象三次，序列化后是三个不同的对象。</li>
+<li>递归声明<br>自定义类型的序列化不支持空引用，在递归引用时，会陷入循环创建的的死循环。 unity 为解决这个问题，限制了最大层深度为 7 层。</li>
+</ul>
+<h3 id="解决方法-ScriptableObjects-2"><a href="#解决方法-ScriptableObjects-2" class="headerlink" title="解决方法 ScriptableObjects"></a>解决方法 ScriptableObjects</h3><ul>
+<li>可存储为 xx.asset 资源，不再依托于 GameObject</li>
+<li>ScriptableObjects 继承自 Unity.Object， 在序列化时创建的是对象的引用。</li>
+</ul>
+<h1 id="Unity-Edtior-对序列化数据的使用-2"><a href="#Unity-Edtior-对序列化数据的使用-2" class="headerlink" title="Unity Edtior 对序列化数据的使用"></a>Unity Edtior 对序列化数据的使用</h1><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/2.png" alt="avatar"></p>
+<p>Editor 通过修改序列化数据修改以及显示目标对象</p>
+<h2 id="操作-API-1"><a href="#操作-API-1" class="headerlink" title="操作 API"></a>操作 API</h2><p><strong>EditorWIndow</strong>  </p>
+<blockquote>
+<p>创建一个窗口</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EditStartWindow</span>: <span class="title">EditorWindow</span></span><br><span class="line">&#123;</span><br><span class="line">    Editor editor;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(<span class="meta-string">"Behavior/Edit"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ShowWindow</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        EditStartWindow window = EditorWindow.CreateInstance&lt;EditStartWindow&gt;();</span><br><span class="line">        window.Show();</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Open"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Inspector</strong></p>
+<blockquote>
+<p>定制 Class 在 Inspector 中的显示</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">CustomEditor(typeof(BehaviorRunTime))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BehaviorRunTimeEditor</span>: <span class="title">Editor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnInspectorGUI();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Run"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            BehaviorRunTime runTime = target <span class="keyword">as</span> BehaviorRunTime;</span><br><span class="line">            runTime.Invoke(<span class="string">"Run"</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>CustomPropertyDrawer</strong>  </p>
+<blockquote>
+<p>自定义字段的显示方案</p>
+</blockquote>
+<ul>
+<li><p>PropertyDrawer<br> 对自定义属性的字段调用此方法渲染</p>
+</li>
+<li><p>DecoratorDrawer<br> 以装饰模式进行渲染，区别是</p>
+<ul>
+<li>不会改变检查器的原始行为，而是扩展它 </li>
+<li>一个属性上能加不止一个DecoratorDrawer </li>
+<li>数组或List上加DecoratorDrawer只会对第一个起作用。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/3.png" alt="avatar"></li>
+</ul>
+</li>
+</ul>
+<h1 id="问题的解决-1"><a href="#问题的解决-1" class="headerlink" title="问题的解决"></a>问题的解决</h1><h2 id="不可序列化的类型-1"><a href="#不可序列化的类型-1" class="headerlink" title="不可序列化的类型"></a>不可序列化的类型</h2><ul>
+<li>高维数组低维化，底层使用一维数组来替代</li>
+<li>字典把 Key 和 Value 各种存储为 List , 运行时用字典，序列化时用数组</li>
+</ul>
+<h2 id="自定义序列化接口-1"><a href="#自定义序列化接口-1" class="headerlink" title="自定义序列化接口"></a>自定义序列化接口</h2><p><strong>ISerializationCallbackReceiver</strong><br>Unity 提供的一个接口，通过实现 OnBeforeSerialize 和 OnAfterDeserialize 使的原本不能被序列化成功的类可以被加工成合格的类型。</p>
+<h2 id="Net-序列化机制-1"><a href="#Net-序列化机制-1" class="headerlink" title=".Net 序列化机制"></a>.Net 序列化机制</h2><p>通过实现 ISerializable 自定义序列化和反序列化过程</p>
+<blockquote>
+<p>另外还有其它的解决方案：<br>Json Xml yaml 和 二进制</p>
+</blockquote>
+<h2 id="新的版本支持-2019-x-1"><a href="#新的版本支持-2019-x-1" class="headerlink" title="新的版本支持 2019.x"></a>新的版本支持 2019.x</h2><p>新增 [SerializeReference]  支持对引用类型序列化，支持接口以及抽象类</p>
+<p>PS：</p>
+<ul>
+<li>引用的类必须是可序列化类型</li>
+<li>引用值无法在 UnityEngine.Object 实例间进行共享</li>
+</ul>
+<h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><p>在使用 Unity 的序列化时必须明确了解那些字段能够被序列化，从而减少因为序列化，反序列化后对象数据不一致导致的问题。</p>
+<p>Editor 通过修改序列化数据修改以及显示目标对象</p>
+<h2 id="操作-API-2"><a href="#操作-API-2" class="headerlink" title="操作 API"></a>操作 API</h2><p><strong>EditorWIndow</strong>  </p>
+<blockquote>
+<p>创建一个窗口</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EditStartWindow</span>: <span class="title">EditorWindow</span></span><br><span class="line">&#123;</span><br><span class="line">    Editor editor;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(<span class="meta-string">"Behavior/Edit"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ShowWindow</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        EditStartWindow window = EditorWindow.CreateInstance&lt;EditStartWindow&gt;();</span><br><span class="line">        window.Show();</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Open"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Inspector</strong></p>
+<blockquote>
+<p>定制 Class 在 Inspector 中的显示</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">CustomEditor(typeof(BehaviorRunTime))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BehaviorRunTimeEditor</span>: <span class="title">Editor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnInspectorGUI();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Run"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            BehaviorRunTime runTime = target <span class="keyword">as</span> BehaviorRunTime;</span><br><span class="line">            runTime.Invoke(<span class="string">"Run"</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>CustomPropertyDrawer</strong>  </p>
+<blockquote>
+<p>自定义字段的显示方案</p>
+</blockquote>
+<ul>
+<li><p>PropertyDrawer<br> 对自定义属性的字段调用此方法渲染</p>
+</li>
+<li><p>DecoratorDrawer<br> 以装饰模式进行渲染，区别是</p>
+<ul>
+<li>不会改变检查器的原始行为，而是扩展它 </li>
+<li>一个属性上能加不止一个DecoratorDrawer </li>
+<li>数组或List上加DecoratorDrawer只会对第一个起作用。</li>
+</ul>
+</li>
+</ul>
+<h1 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h1><p>序列化是为了将对象存储（或传输）到内存、数据库或文件中，把对象状态转化为一组字节的过程</p>
+<p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/1.png" alt="avatar"></p>
+<h1 id="Unity-如何序列化-3"><a href="#Unity-如何序列化-3" class="headerlink" title="Unity 如何序列化"></a>Unity 如何序列化</h1><p>Unity 中 UnityEngine.Object 类提供序列化能力，任何继承自它的类（MonoBehaviour,ScriptableObject）， 都可被序列化。 其中大部分使用都是隐形的，开发中不需要在意。</p>
+<h2 id="MonoBehavior-编写-3"><a href="#MonoBehavior-编写-3" class="headerlink" title="MonoBehavior 编写"></a>MonoBehavior 编写</h2><p>可被序列化的字段必须符合以下几点：</p>
+<ul>
+<li>设为public，或者添加[SerializeField]属性</li>
+<li>不要设为static</li>
+<li>不要设为const</li>
+<li>不要设为readonly</li>
+<li>字段类型必须是可以序列化的类型</li>
+</ul>
+<h2 id="哪些类型可以序列化？-3"><a href="#哪些类型可以序列化？-3" class="headerlink" title="哪些类型可以序列化？"></a>哪些类型可以序列化？</h2><ul>
+<li>来自UntiyEngine.Object的对象引用</li>
+<li>有 [Serializable] 属性的自定义非抽象类</li>
+<li>基础数据类型（int，float，double，bool，string等等）</li>
+<li>可序列化的数组Array字段类型</li>
+<li>可序列化的泛型列表List<t>字段类型<br>结构体</t></li>
+</ul>
+<blockquote>
+<p>一个很常见的不可被序列化的数据结构：<strong>Dictionaries</strong>，即使把它们声明为公有并且有 [SerializeField] 属性。在开发游戏时要记住这点。</p>
+</blockquote>
+<h2 id="自定义序列化类型-3"><a href="#自定义序列化类型-3" class="headerlink" title="自定义序列化类型"></a>自定义序列化类型</h2><p>添加 [System.Serializable] 修饰符</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">System.Serializable</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TestData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> BehaviorNode obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="会出现的问题-3"><a href="#会出现的问题-3" class="headerlink" title="会出现的问题"></a>会出现的问题</h3><ul>
+<li>任然依赖于 MonoBehaviour 并且需要 GameObject 才可存在</li>
+<li>无法支持多态，对一个基类数组添加三个同样的子类对象，序列化后是三个基类对象。</li>
+<li>耦合引用, 对一个泛型列表添加同一个对象三次，序列化后是三个不同的对象。</li>
+<li>递归声明<br>自定义类型的序列化不支持空引用，在递归引用时，会陷入循环创建的的死循环。 unity 为解决这个问题，限制了最大层深度为 7 层。</li>
+</ul>
+<h3 id="解决方法-ScriptableObjects-3"><a href="#解决方法-ScriptableObjects-3" class="headerlink" title="解决方法 ScriptableObjects"></a>解决方法 ScriptableObjects</h3><ul>
+<li>可存储为 xx.asset 资源，不再依托于 GameObject</li>
+<li>ScriptableObjects 继承自 Unity.Object， 在序列化时创建的是对象的引用。</li>
+</ul>
+<h1 id="Unity-Edtior-对序列化数据的使用-3"><a href="#Unity-Edtior-对序列化数据的使用-3" class="headerlink" title="Unity Edtior 对序列化数据的使用"></a>Unity Edtior 对序列化数据的使用</h1><p><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/2.png" alt="avatar"></p>
+<p>Editor 通过修改序列化数据修改以及显示目标对象</p>
+<h2 id="操作-API-3"><a href="#操作-API-3" class="headerlink" title="操作 API"></a>操作 API</h2><p><strong>EditorWIndow</strong>  </p>
+<blockquote>
+<p>创建一个窗口</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EditStartWindow</span>: <span class="title">EditorWindow</span></span><br><span class="line">&#123;</span><br><span class="line">    Editor editor;</span><br><span class="line"></span><br><span class="line">    [<span class="meta">MenuItem(<span class="meta-string">"Behavior/Edit"</span>)</span>]</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">ShowWindow</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        EditStartWindow window = EditorWindow.CreateInstance&lt;EditStartWindow&gt;();</span><br><span class="line">        window.Show();</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Open"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Inspector</strong></p>
+<blockquote>
+<p>定制 Class 在 Inspector 中的显示</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">CustomEditor(typeof(BehaviorRunTime))</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BehaviorRunTimeEditor</span>: <span class="title">Editor</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnInspectorGUI();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (GUILayout.Button(<span class="string">"Run"</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            BehaviorRunTime runTime = target <span class="keyword">as</span> BehaviorRunTime;</span><br><span class="line">            runTime.Invoke(<span class="string">"Run"</span>, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>CustomPropertyDrawer</strong>  </p>
+<blockquote>
+<p>自定义字段的显示方案</p>
+</blockquote>
+<ul>
+<li><p>PropertyDrawer<br> 对自定义属性的字段调用此方法渲染</p>
+</li>
+<li><p>DecoratorDrawer<br> 以装饰模式进行渲染，区别是</p>
+<ul>
+<li>不会改变检查器的原始行为，而是扩展它 </li>
+<li>一个属性上能加不止一个DecoratorDrawer </li>
+<li>数组或List上加DecoratorDrawer只会对第一个起作用。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020_5_18/3.png" alt="avatar"></li>
+</ul>
+</li>
+</ul>
+<h1 id="问题的解决-2"><a href="#问题的解决-2" class="headerlink" title="问题的解决"></a>问题的解决</h1><h2 id="不可序列化的类型-2"><a href="#不可序列化的类型-2" class="headerlink" title="不可序列化的类型"></a>不可序列化的类型</h2><ul>
+<li>高维数组低维化，底层使用一维数组来替代</li>
+<li>字典把 Key 和 Value 各种存储为 List , 运行时用字典，序列化时用数组</li>
+</ul>
+<h2 id="自定义序列化接口-2"><a href="#自定义序列化接口-2" class="headerlink" title="自定义序列化接口"></a>自定义序列化接口</h2><p><strong>ISerializationCallbackReceiver</strong><br>Unity 提供的一个接口，通过实现 OnBeforeSerialize 和 OnAfterDeserialize 使的原本不能被序列化成功的类可以被加工成合格的类型。</p>
+<h2 id="Net-序列化机制-2"><a href="#Net-序列化机制-2" class="headerlink" title=".Net 序列化机制"></a>.Net 序列化机制</h2><p>通过实现 ISerializable 自定义序列化和反序列化过程</p>
+<blockquote>
+<p>另外还有其它的解决方案：<br>Json Xml yaml 和 二进制</p>
+</blockquote>
+<h2 id="新的版本支持-2019-x-2"><a href="#新的版本支持-2019-x-2" class="headerlink" title="新的版本支持 2019.x"></a>新的版本支持 2019.x</h2><p>新增 [SerializeReference]  支持对引用类型序列化，支持接口以及抽象类</p>
+<p>PS：</p>
+<ul>
+<li>引用的类必须是可序列化类型</li>
+<li>引用值无法在 UnityEngine.Object 实例间进行共享</li>
+</ul>
+<h1 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h1><p>在使用 Unity 的序列化时必须明确了解那些字段能够被序列化，从而减少因为序列化，反序列化后对象数据不一致导致的问题。</p>
+<h1 id="问题的解决-3"><a href="#问题的解决-3" class="headerlink" title="问题的解决"></a>问题的解决</h1><h2 id="不可序列化的类型-3"><a href="#不可序列化的类型-3" class="headerlink" title="不可序列化的类型"></a>不可序列化的类型</h2><ul>
+<li>高维数组低维化，底层使用一维数组来替代</li>
+<li>字典把 Key 和 Value 各种存储为 List , 运行时用字典，序列化时用数组</li>
+</ul>
+<h2 id="自定义序列化接口-3"><a href="#自定义序列化接口-3" class="headerlink" title="自定义序列化接口"></a>自定义序列化接口</h2><p><strong>ISerializationCallbackReceiver</strong><br>Unity 提供的一个接口，通过实现 OnBeforeSerialize 和 OnAfterDeserialize 使的原本不能被序列化成功的类可以被加工成合格的类型。</p>
+<h2 id="Net-序列化机制-3"><a href="#Net-序列化机制-3" class="headerlink" title=".Net 序列化机制"></a>.Net 序列化机制</h2><p>通过实现 ISerializable 自定义序列化和反序列化过程</p>
+<blockquote>
+<p>另外还有其它的解决方案：<br>Json Xml yaml 和 二进制</p>
+</blockquote>
+<h2 id="新的版本支持-2019-x-3"><a href="#新的版本支持-2019-x-3" class="headerlink" title="新的版本支持 2019.x"></a>新的版本支持 2019.x</h2><p>新增 [SerializeReference]  支持对引用类型序列化，支持接口以及抽象类</p>
+<p>PS：</p>
+<ul>
+<li>引用的类必须是可序列化类型</li>
+<li>引用值无法在 UnityEngine.Object 实例间进行共享</li>
+</ul>
+<h1 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h1><p>在使用 Unity 的序列化时必须明确了解那些字段能够被序列化，从而减少因为序列化，反序列化后对象数据不一致导致的问题。</p>
 ]]></content>
       <categories>
         <category>Unity</category>

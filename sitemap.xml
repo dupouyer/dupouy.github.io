@@ -2,77 +2,91 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>https://dupouyer.github.io/categories/index.html</loc>
     
-    <lastmod>2020-06-08T04:39:22.355Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2020-06-08T04:39:22.355Z</lastmod>
+    <lastmod>2020-06-08T07:00:35.525Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/04/UPR%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://dupouyer.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-06-08T07:00:35.525Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dupouyer.github.io/2020/06/08/testimage/</loc>
+    
+    <lastmod>2020-06-08T05:58:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dupouyer.github.io/2020/06/08/imgTest/</loc>
+    
+    <lastmod>2020-06-08T05:37:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dupouyer.github.io/2020/06/04/UPR%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2020-06-04T07:56:37.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/03/UWA%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://dupouyer.github.io/2020/06/03/UWA%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2020-06-03T10:15:37.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/06/02/Stripping-with-IL2CPP/</loc>
+    <loc>https://dupouyer.github.io/2020/06/02/Stripping-with-IL2CPP/</loc>
     
     <lastmod>2020-06-02T03:26:52.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/05/18/unity%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
+    <loc>https://dupouyer.github.io/2020/05/18/unity%E5%BA%8F%E5%88%97%E5%8C%96/</loc>
     
     <lastmod>2020-05-18T10:16:10.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/29/BST/</loc>
+    <loc>https://dupouyer.github.io/2020/04/29/BST/</loc>
     
     <lastmod>2020-04-29T08:33:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/08/sort/</loc>
+    <loc>https://dupouyer.github.io/2020/04/08/sort/</loc>
     
     <lastmod>2020-04-08T11:12:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/04/07/BasicDataStructure/</loc>
+    <loc>https://dupouyer.github.io/2020/04/07/BasicDataStructure/</loc>
     
     <lastmod>2020-04-07T11:30:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/03/20/Anim/</loc>
+    <loc>https://dupouyer.github.io/2019/03/20/Anim/</loc>
     
     <lastmod>2019-03-20T11:30:00.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/03/07/Unity/</loc>
+    <loc>https://dupouyer.github.io/2019/03/07/Unity/</loc>
     
     <lastmod>2019-03-07T11:30:00.000Z</lastmod>
     
