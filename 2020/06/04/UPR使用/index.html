@@ -100,25 +100,35 @@
 
 
 
-  <meta name="description" content="动画补间动画补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。缺点：运行时计算，计算量与动画数量，动画复杂度正相关。优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用 补间函数根据当前时间计算出动画状态。公式：state = f(t) 常用补间模拟自然中的物理规则。匀速运动，加速运动，减速运动">
-<meta name="keywords" content="动画">
+  <meta name="description" content="环境准备项目准备 登入 Unity UPR 官网, 登入账号，选择我的项目，点击创建项目。按要求填写相关项目信息。 进入新建好的项目，点击新建测试根据测试需求开启相关测试选项。PS: 项目包名需要与目标测试包保持一致。创建完成  测试包准备如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。不查看这两项数据的可以跳过此步骤。 导入 un">
+<meta name="keywords" content="tools">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动画">
-<meta property="og:url" content="http://yoursite.com/2019/03/20/Anim/index.html">
+<meta property="og:title" content="UPR使用">
+<meta property="og:url" content="http://yoursite.com/2020/06/04/UPR使用/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="动画补间动画补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。缺点：运行时计算，计算量与动画数量，动画复杂度正相关。优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用 补间函数根据当前时间计算出动画状态。公式：state = f(t) 常用补间模拟自然中的物理规则。匀速运动，加速运动，减速运动">
+<meta property="og:description" content="环境准备项目准备 登入 Unity UPR 官网, 登入账号，选择我的项目，点击创建项目。按要求填写相关项目信息。 进入新建好的项目，点击新建测试根据测试需求开启相关测试选项。PS: 项目包名需要与目标测试包保持一致。创建完成  测试包准备如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。不查看这两项数据的可以跳过此步骤。 导入 un">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-20T11:30:00.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png">
+<meta property="og:updated_time" content="2020-06-04T07:56:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动画">
-<meta name="twitter:description" content="动画补间动画补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。缺点：运行时计算，计算量与动画数量，动画复杂度正相关。优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用 补间函数根据当前时间计算出动画状态。公式：state = f(t) 常用补间模拟自然中的物理规则。匀速运动，加速运动，减速运动">
+<meta name="twitter:title" content="UPR使用">
+<meta name="twitter:description" content="环境准备项目准备 登入 Unity UPR 官网, 登入账号，选择我的项目，点击创建项目。按要求填写相关项目信息。 进入新建好的项目，点击新建测试根据测试需求开启相关测试选项。PS: 项目包名需要与目标测试包保持一致。创建完成  测试包准备如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。不查看这两项数据的可以跳过此步骤。 导入 un">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/20/Anim/">
+  <link rel="canonical" href="http://yoursite.com/2020/06/04/UPR使用/">
 
 
 
@@ -128,7 +138,7 @@
   };
 </script>
 
-  <title>动画 | BLOG</title>
+  <title>UPR使用 | BLOG</title>
   
 
 
@@ -344,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/20/Anim/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/04/UPR使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dupouy">
@@ -361,7 +371,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">动画
+          <h1 class="post-title" itemprop="name headline">UPR使用
 
               
             
@@ -387,7 +397,7 @@
                 
               
 
-              <time title="创建时间：2019-03-20 19:30:00" itemprop="dateCreated datePublished" datetime="2019-03-20T19:30:00+08:00">2019-03-20</time>
+              <time title="创建时间：2020-06-04 15:56:37" itemprop="dateCreated datePublished" datetime="2020-06-04T15:56:37+08:00">2020-06-04</time>
             
 
             
@@ -440,25 +450,30 @@
       
 
       
-        <h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="补间动画"><a href="#补间动画" class="headerlink" title="补间动画"></a>补间动画</h2><p>补间动画是以关键帧以及补间函数组成，在运行时生成当前的动画信息。<br>优点：能利用少量的资源展现丰富的表现, 不会受游戏帧率波动影响。<br>缺点：运行时计算，计算量与动画数量，动画复杂度正相关。<br>优化方向：anim instance 使用 gpu 计算,目前只有骨骼动画适用</p>
-<h3 id="补间函数"><a href="#补间函数" class="headerlink" title="补间函数"></a>补间函数</h3><p>根据当前时间计算出动画状态。<br>公式：state = f(t)</p>
-<h4 id="常用补间"><a href="#常用补间" class="headerlink" title="常用补间"></a>常用补间</h4><p>模拟自然中的物理规则。<br>匀速运动，加速运动，减速运动<br>p = (P2 - P1) / T * t</p>
-<p>物理公式：<br>s = V0 <em> t +  a / 2 </em> t ^ 2</p>
-<h4 id="缓动方程"><a href="#缓动方程" class="headerlink" title="缓动方程"></a>缓动方程</h4><p>tween(t, b , c , d)<br>t（time）、b（beforeMove）、c（changeDistance）及d（duration）</p>
-<p>X轴 时间<br>Y轴 量</p>
-<p>对 x 轴归一化处理<br>X = dx = t / d (0 -&gt; 1)<br>Y = dy (0 -&gt; 1)</p>
-<p>构建函数 y = x ^ 2 , y = x ^ 3 …..<br>y = 1 - cos(0.5pi X)<br>y = sin(0.5pi X)</p>
-<p>s = b + c * dy</p>
-<h4 id="IK"><a href="#IK" class="headerlink" title="IK"></a>IK</h4><p>反向动力学<br>M = Mij * Mpos</p>
-<h4 id="骨骼动画"><a href="#骨骼动画" class="headerlink" title="骨骼动画"></a>骨骼动画</h4><p>骨骼，蒙皮，关键帧，补间<br>关键帧存储骨骼的状态信息，骨骼状态信息是矩阵，可参与补间运算。计算出当前时间的骨骼状态后，再更具顶点中记录的权重信息来计算出顶点跟随骨骼运动后的坐标。</p>
-<h2 id="帧动画"><a href="#帧动画" class="headerlink" title="帧动画"></a>帧动画</h2><p>以固定帧率播放贴图内容的动画。<br>优点：表现力强，不受限于动画信息的存储。<br>缺点：贴图内容与动画长度正相关。占用大量内存空间, 播放帧率不稳定时，会失真。</p>
-<p>优化方向：贴图合批，前期规划。</p>
-<h3 id="位图混合"><a href="#位图混合" class="headerlink" title="位图混合"></a>位图混合</h3><p>多张位图混合，控制其中某几张图的滚动形成动画<br>shader 运行时，混合多帧位图。<br>运行时不需要计算帧内容<br>贴图资源大</p>
-<h4 id="利用混合让图片内容动起来"><a href="#利用混合让图片内容动起来" class="headerlink" title="利用混合让图片内容动起来"></a>利用混合让图片内容动起来</h4><p>运行时可以通过shader 加入额外的控制参数，动画内容受运行时控制。</p>
-<h4 id="噪点的利用"><a href="#噪点的利用" class="headerlink" title="噪点的利用"></a>噪点的利用</h4><p>噪点图的参数，在随机性上更自然。 贴图可进入 GPU 运算，效率更佳。</p>
-<h2 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h2><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>播放，帧率</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>anim = controlPoint + f(t)</p>
-
+        <h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><ul>
+<li>登入 <a href="https://upr.unity.com/" target="_blank" rel="noopener">Unity UPR 官网</a>, 登入账号，选择我的项目，点击创建项目。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/1.png" alt="新建项目"><br>按要求填写相关项目信息。</li>
+<li>进入新建好的项目，点击新建测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/2.png" alt="新建测试"><br>根据测试需求开启相关测试选项。<br>PS: 项目包名需要与目标测试包保持一致。<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/3.png" alt="创建完成"><br>创建完成  <h2 id="测试包准备"><a href="#测试包准备" class="headerlink" title="测试包准备"></a>测试包准备</h2>如果需要测试查看 Mono 和 Lua 的，则需要导入 UPRTools_V0.6.2.unitypackage。<br>不查看这两项数据的可以跳过此步骤。</li>
+<li>导入 unitypackage</li>
+<li>设置 UPRTools</li>
+<li>发布</li>
+</ul>
+<h2 id="anroid-平台"><a href="#anroid-平台" class="headerlink" title="anroid 平台"></a>anroid 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR 安卓版并安装<br>根据提示，UPR 需要开启悬浮窗口权限，设置为开启。  </p>
+<ul>
+<li>启动 UPR<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/4.png" width="300" height="500" alt="启动UPR" align="center"></li>
+<li>扫描网页上的测试二维码开启测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/5.png" alt="轮盘"></li>
+<li>左上角会出现轮盘操作菜单，顺时针从左到右分别是开启测试，添加 Tag , 创建对象快照</li>
+<li>停止测试后网页项目会同时停止</li>
+<li>测试完成。</li>
+</ul>
+<h2 id="windows-平台"><a href="#windows-平台" class="headerlink" title="windows 平台"></a>windows 平台</h2><p>在 <a href="https://upr.unity.com/download" target="_blank" rel="noopener">官网</a> 下载最新的 UPR PC版本并安装启动<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/6.png" alt="启动"></p>
+<ul>
+<li>拷贝测试项的 Session ID 填入，并 Load.</li>
+<li>选择测试手机，可通过 IP 连接，也可通过 ABD（建议使用 ADB ）</li>
+<li>点击 Start Test<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/7.png" alt="开启"></li>
+<li>点击 Stop and ProcessData 结束测试<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/8.png" alt="结束"></li>
+<li>前往网页项目，查看测试报告<br><img src="https://raw.githubusercontent.com/dupouyer/dupouyer.github.io/hexo/source/_posts/img/2020-6-4/9.png" alt="查看"></li>
+</ul>
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1>
       
     </div>
 
@@ -481,7 +496,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/动画/" rel="tag"># 动画</a>
+            <a href="/tags/tools/" rel="tag"># tools</a>
           
         </div>
       
@@ -494,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/07/Unity/" rel="next" title="Unity 总结">
-                <i class="fa fa-chevron-left"></i> Unity 总结
+              <a href="/2020/06/03/UWA使用/" rel="next" title="UWA使用">
+                <i class="fa fa-chevron-left"></i> UWA使用
               </a>
             
           </div>
@@ -503,10 +518,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/07/BasicDataStructure/" rel="prev" title="基础数据结构">
-                基础数据结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -671,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动画"><span class="nav-number">1.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#补间动画"><span class="nav-number">1.1.</span> <span class="nav-text">补间动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#补间函数"><span class="nav-number">1.1.1.</span> <span class="nav-text">补间函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用补间"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">常用补间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓动方程"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">缓动方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IK"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">IK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#骨骼动画"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">骨骼动画</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#帧动画"><span class="nav-number">1.2.</span> <span class="nav-text">帧动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#位图混合"><span class="nav-number">1.2.1.</span> <span class="nav-text">位图混合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用混合让图片内容动起来"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">利用混合让图片内容动起来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#噪点的利用"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">噪点的利用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态机"><span class="nav-number">1.3.</span> <span class="nav-text">状态机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">1.4.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目准备"><span class="nav-number">1.1.</span> <span class="nav-text">项目准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试包准备"><span class="nav-number">1.2.</span> <span class="nav-text">测试包准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anroid-平台"><span class="nav-number">1.3.</span> <span class="nav-text">anroid 平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#windows-平台"><span class="nav-number">1.4.</span> <span class="nav-text">windows 平台</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据分析"><span class="nav-number">2.</span> <span class="nav-text">数据分析</span></a></li></ol></div>
             
 
           </div>
