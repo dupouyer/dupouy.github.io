@@ -1124,12 +1124,6 @@ Lua 模块仅适用于使用 Lua 的项目
       </tags>
   </entry>
   <entry>
-    <title>imgTest</title>
-    <url>/2020/06/08/imgTest/</url>
-    <content><![CDATA[<p><img src="/images/test.jpg" alt="imgs"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>排序</title>
     <url>/2020/04/08/sort/</url>
     <content><![CDATA[<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h2 id="冒泡排序-1"><a href="#冒泡排序-1" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p><img src="http://s0.lgstatic.com/i/image2/M01/91/0B/CgoB5l2IiW2AUgXzAEVU1vdS3ek726.gif" alt="avatar"></p>
@@ -1352,11 +1346,6 @@ Lua 模块仅适用于使用 Lua 的项目
         <tag>算法</tag>
         <tag>排序</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>testimage</title>
-    <url>/2020/06/08/testimage/</url>
-    <content><![CDATA[<img src="/2020/06/08/testimage/test.jpg" class="test">  ]]></content>
   </entry>
   <entry>
     <title>Unity序列化</title>
