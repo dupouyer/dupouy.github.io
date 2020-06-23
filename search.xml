@@ -30,6 +30,173 @@
       </tags>
   </entry>
   <entry>
+    <title>AssetBundle序列化尺寸</title>
+    <url>/2020/06/23/AssetBundle%20%E5%BA%8F%E5%88%97%E5%8C%96%E5%B0%BA%E5%AF%B8/</url>
+    <content><![CDATA[<h1 id="AssetBundle-加载进内存的序列化文件分析"><a href="#AssetBundle-加载进内存的序列化文件分析" class="headerlink" title="AssetBundle 加载进内存的序列化文件分析"></a>AssetBundle 加载进内存的序列化文件分析</h1><h2 id="Asset-AssetBundle-序列化分析"><a href="#Asset-AssetBundle-序列化分析" class="headerlink" title="Asset AssetBundle 序列化分析"></a>Asset AssetBundle 序列化分析</h2><hr>
+<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>纹理大小不一样<br>|AssetBundle|TextureSize| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|texture1|512 <em> 512| 176 KB |18.0 KB |<br>|texture2|1024 </em> 1024| 688 KB |18.0 KB |</p>
+<h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><p>以拷贝出来的的 Standard Shader 为标准，分别增加其 Properties 和 SubShader<br>|AssetBundle|ShaderInfo| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|shader1|Copy From Standard| 110 KB | <strong>121.6 KB</strong> |<br>|shader2|+ 40 Properties| 113 KB| <strong>121.6 KB</strong> |<br>|shader3|+ 20 SubShader| 519 KB |<strong>121.6 KB</strong> |</p>
+<h3 id="Mesh"><a href="#Mesh" class="headerlink" title="Mesh"></a>Mesh</h3><p>顶点数量不同<br>|AssetBundle| MeshInfo |AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|mesh1| 0 verts 0 tris |9 KB| <strong>23.2 KB</strong> |<br>|mesh2| 30000 verts 10000 tris| 419 KB| <strong>23.2 KB</strong> |</p>
+<blockquote>
+<p>Asset 打包进行 AssetBundle 的序列化文件，并不受资源内容尺寸影响，只与资源类型相关</p>
+</blockquote>
+<hr>
+<h3 id="复数资源的打包"><a href="#复数资源的打包" class="headerlink" title="复数资源的打包"></a>复数资源的打包</h3><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Group</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>group1</td>
+<td>Texture1 + Mesh1 + Shader1</td>
+<td>289 KB</td>
+<td><strong>129.4 KB</strong></td>
+</tr>
+<tr>
+<td>group2</td>
+<td>Texture1 + Texture2 + Mesh1 + Mesh2 + Shader1 + Shader2</td>
+<td>1461 KB</td>
+<td><strong>129.5 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>同类资源打包, 并不等于单个资源序列化后的文件之和，而是小于，推测有过一些压缩的方案。</li>
+<li>重复资源打包，增长量为 0.1KB , 推断同类型资源不会重复创建序列化文件， 增长的 0.1KB 应该是引用相关的数据</li>
+</ul>
+</blockquote>
+<h2 id="Prefab-AssetBundle-序列化分析"><a href="#Prefab-AssetBundle-序列化分析" class="headerlink" title="Prefab AssetBundle 序列化分析"></a>Prefab AssetBundle 序列化分析</h2><h3 id="Prefab-序列化尺寸"><a href="#Prefab-序列化尺寸" class="headerlink" title="Prefab 序列化尺寸"></a>Prefab 序列化尺寸</h3><p>空 Prefab<br>复数空 Prefab 尺寸<br>|AssetBundle| Info |AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>| prefab1| 空的 Gameobject | 5 KB | <strong>18.3 KB</strong> |<br>| prefabgroup | 100 个 空 Gameobject | 30 KB | <strong>23 KB</strong> |</p>
+<blockquote>
+<p>100 个 Prefab 打包相比单个 Prefab ，增长量为 1.7 KB , 复数的 Prefab 合并打包不会创建重复的序列化文件</p>
+</blockquote>
+<h3 id="Prefab-复杂化后的尺寸"><a href="#Prefab-复杂化后的尺寸" class="headerlink" title="Prefab 复杂化后的尺寸"></a>Prefab 复杂化后的尺寸</h3><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prefab1</td>
+<td>空的 Gameobject</td>
+<td>5 KB</td>
+<td><strong>18.3 KB</strong></td>
+</tr>
+<tr>
+<td>prefab2</td>
+<td>深度创建 1000 个 Child</td>
+<td>192 KB</td>
+<td><strong>65.2 KB</strong></td>
+</tr>
+<tr>
+<td>prefab3</td>
+<td>广度创建 1000 个 Child</td>
+<td>197 KB</td>
+<td><strong>67.0 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>1000 个 Gameobject 嵌套创建后相比空的 GameObject ，增长量为 46.9 KB ，广度嵌套相比增长再多 1.8 KB 。 对比上一个空 prefab 的测试， 100 个 prefab 增长约 5KB , 这里 1000 个 child 对应增长  46.9 KB 。Prefab 的复杂度增加也会增大序列化文件的尺寸</p>
+</blockquote>
+<h2 id="MonoScript-AssetBundle-序列化尺寸"><a href="#MonoScript-AssetBundle-序列化尺寸" class="headerlink" title="MonoScript AssetBundle 序列化尺寸"></a>MonoScript AssetBundle 序列化尺寸</h2><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mono1</td>
+<td>干净的 MonoScript</td>
+<td>6 KB</td>
+<td><strong>20.1 KB</strong></td>
+</tr>
+<tr>
+<td>mono2</td>
+<td>+ 10 Vector3[] 序列化字段</td>
+<td>7 KB</td>
+<td><strong>20.8 KB</strong></td>
+</tr>
+<tr>
+<td>mono3</td>
+<td>每个序列化字段填入100个 vector3</td>
+<td>19 KB</td>
+<td><strong>20.8 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>脚本的序列化只与序列化字段的的数量有关，字段内容并不被提前序列化后加载</p>
+</blockquote>
+<h2 id="AssetBundle-中依赖关系的序列化分析"><a href="#AssetBundle-中依赖关系的序列化分析" class="headerlink" title="AssetBundle 中依赖关系的序列化分析"></a>AssetBundle 中依赖关系的序列化分析</h2><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reference1</td>
+<td>GameObject + Mono</td>
+<td>6 KB</td>
+<td><strong>20.2 KB</strong></td>
+</tr>
+<tr>
+<td>reference2</td>
+<td>GameObject + Mono + Texture</td>
+<td>178 KB</td>
+<td><strong>21.6 KB</strong></td>
+</tr>
+<tr>
+<td>reference3</td>
+<td>GameObject + Mono -&gt; Texture</td>
+<td>178 KB</td>
+<td><strong>21.6 KB</strong></td>
+</tr>
+<tr>
+<td>reference4</td>
+<td>GameObject + Mono -&gt; Texture(texture1)</td>
+<td>6 KB</td>
+<td><strong>92.3 KB</strong></td>
+</tr>
+<tr>
+<td>reference4</td>
+<td>GameObject + Mono -&gt; Texture1(texture1) Texture2(texture2)</td>
+<td>6 KB</td>
+<td><strong>92.4 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ul>
+<li>包内依赖与包内引用没有大小的变化，推断引用关系不会被序列化或者是量级太小无法感知</li>
+<li>包之间的引用产生了一个 70.7 KB 的变化，这个变化不会随着包的引用数量而增加，查资料发现是有一个extern reference 的 buff 区域创建。 </li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>AssetBundle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AssetBundle序列化文件分析</title>
     <url>/2020/06/19/AssetBundle%E5%BA%8F%E5%88%97%E5%8C%96%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>AssetBundle 在被加载后，不管通过何种方式加载，都会创建一个 AssetBundle 的 SerializedFile。 本文尝试对其 Size 受那些因素影响进行分析。</p>
