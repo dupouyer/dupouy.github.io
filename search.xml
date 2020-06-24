@@ -389,6 +389,256 @@
       </tags>
   </entry>
   <entry>
+    <title>AssetBundle研究报告</title>
+    <url>/2020/06/24/AssetBundle%E7%A0%94%E7%A9%B6%E6%8A%A5%E5%91%8A/</url>
+    <content><![CDATA[<h1 id="AssetBundle-文件结构"><a href="#AssetBundle-文件结构" class="headerlink" title="AssetBundle 文件结构"></a>AssetBundle 文件结构</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="The-AssetBundle-File"><a href="#The-AssetBundle-File" class="headerlink" title="The AssetBundle File"></a>The AssetBundle File</h3><p>AssetBundle File 是一个包含多个文件的 <strong>Archive</strong> , 其结构会有一些小的变化取决于是 normal AssetBundle 还是 Scene AssetBundle</p>
+<p>Normal AssetBundle<br><img src="/2020/06/24/AssetBundle研究报告/1.png" class="Normal AssetBundle Structure"></p>
+<p>Scene AssetBundle<br><img src="/2020/06/24/AssetBundle研究报告/2.png" class="Scene AssetBundle Structure"><br>　场景包还包含了预加载数据（PreloadData）、共享数据（shaderData）和全局光照数据（Global Illumination Data）并且针对场景及其内容的 Stream Loading 进行了优化</p>
+<h3 id="The-Manifest-File"><a href="#The-Manifest-File" class="headerlink" title="The Manifest File"></a>The Manifest File</h3><p>对于每个生成的 AssetBundle 都会有对应的 Manifest Bundle 生成。 文件内容以文本格式存储，可被任何文本编辑器打开。<br>Manifest文件仅用于检查增量构建，运行时不需要。因此不需要打包进正式发行的游戏中。<br>每个AssetBundle都有一个manifest文件，包含如下信息：</p>
+<ul>
+<li>CRC（循环冗余码）：资源文件的哈希码，在该AssetBundle中的所有资源有一个单一的哈希码，用于检查增量的构建。</li>
+<li>Type tree哈希码：在该AssetBundle中所有类型有一个单一的哈希码，用于检查增量的构建。</li>
+<li>Class types：该AssetBundle中所有的类类型。当为type tree做增量构建检查时将产生一个新的哈希码。</li>
+<li>Assets：该AssetBundle中所有明确包含的资源名字，依赖于该AssetBundle的其他AssetBundle。</li>
+<li>Dependencies： 依赖列表</li>
+</ul>
+<p>文件内容大体如下所示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ManifestFileVersion: 0</span><br><span class="line">CRC: 2422268106</span><br><span class="line">Hashes:</span><br><span class="line">  AssetFileHash:</span><br><span class="line">    serializedVersion: 2</span><br><span class="line">    Hash: 8b6db55a2344f068cf8a9be0a662ba15</span><br><span class="line">  TypeTreeHash:</span><br><span class="line">    serializedVersion: 2</span><br><span class="line">    Hash: 37ad974993dbaa77485dd2a0c38f347a</span><br><span class="line">HashAppended: 0</span><br><span class="line">ClassTypes:</span><br><span class="line">- Class: 91</span><br><span class="line">  Script: &#123;instanceID: 0&#125;</span><br><span class="line">Assets:</span><br><span class="line">  Asset_0: Assets/Mecanim/StateMachine.controller</span><br><span class="line">Dependencies: &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="文件结构分析"><a href="#文件结构分析" class="headerlink" title="文件结构分析"></a>文件结构分析</h2><p>把压缩数据解开后，就和非压缩模式没有差别，下面只讨论非压缩格式:</p>
+<p>AssetBundle由两部分组成：Header 和 DataSegment</p>
+<ul>
+<li>Header 中保存了版本号，数据类型，文件信息，等描述信息。其中文件信息记录了单个资源文件的描述信息以及文件的 offset 和 size。<br>文件信息记录了数据部分里面的所有单个资源的文件名以及在整个AssetBundle中<br>文件offset和size,通过这个信息可以直接获取到AssetBundle中的某一个文件的数据。  </li>
+<li>DataSegment 保存着实际的 Asset 文件内容</li>
+</ul>
+<p>文件头结构如下图：</p>
+<img src="/2020/06/24/AssetBundle研究报告/5.png" class="AssetBundle Compreesion File">
+<p>具体的序列化结构如下：<br><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这里，所有的 int 都是以小端编码的 4 字节整数（不同于外部文件格式采用的大端编码）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AssetBundle文件头结构</span></span><br><span class="line"><span class="keyword">struct</span> AssetBundleFileHead &#123;</span><br><span class="line">     <span class="keyword">struct</span> LevelInfo &#123;</span><br><span class="line">         unsigned <span class="keyword">int</span> PackSize;</span><br><span class="line">         unsigned <span class="keyword">int</span> UncompressedSize;</span><br><span class="line">     &#125;;</span><br><span class="line"> </span><br><span class="line">     <span class="keyword">string</span> FileID;</span><br><span class="line">     unsigned <span class="keyword">int</span> Version; <span class="comment">// bundle格式版本 3.5~4.x : Version == 3</span></span><br><span class="line">     <span class="keyword">string</span> MainVersion; <span class="comment">// </span></span><br><span class="line">     <span class="keyword">string</span> BuildVersion;</span><br><span class="line">     size_t MinimumStreamedBytes;</span><br><span class="line">     size_t HeaderSize;</span><br><span class="line">     size_t NumberOfLevelsToDownloadBeforeStreaming;</span><br><span class="line">     size_t LevelCount;</span><br><span class="line">     LevelInfo LevelList[];</span><br><span class="line">     size_t CompleteFileSize;</span><br><span class="line">     size_t FileInfoHeaderSize;</span><br><span class="line">     <span class="keyword">bool</span> Compressed;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> AssetFileHeader &#123;</span><br><span class="line">     <span class="keyword">struct</span> AssetFileInfo &#123;</span><br><span class="line">          <span class="keyword">string</span> name;</span><br><span class="line">          size_t offset; <span class="comment">//表示的是除去 HeaderSize 后的偏移量</span></span><br><span class="line">          size_t length;</span><br><span class="line">     &#125;;</span><br><span class="line">     size_t FileCount; <span class="comment">// 大多数情况只有一个</span></span><br><span class="line">     AssetFileInfo     File[];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> AssetHeader &#123;</span><br><span class="line">    <span class="comment">// TypeTree 是对数据结构本身的描述，通过这个描述，就可以反序列化出每个对象</span></span><br><span class="line">    <span class="comment">//这个 TypeTree 对于 asset bundle 来说是可选的，因为数据结构的信息可以事先放置在引擎中（引擎多半只支持固有的数据类型）。在发布到移动设备上时，TypeTree 是不打包到 asset bundle 中的。</span></span><br><span class="line">     size_t TypeTreeSize; <span class="comment">// TypeTree 部分的大小</span></span><br><span class="line">     size_t FileSize;</span><br><span class="line">     unsigned <span class="keyword">int</span> Format;</span><br><span class="line">     size_t dataOffset;</span><br><span class="line">     size_t Unknown;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> ObjectHeader &#123;</span><br><span class="line">     <span class="keyword">struct</span> ObjectInfo &#123;</span><br><span class="line">          <span class="keyword">int</span> pathID; <span class="comment">// 每个对象都有唯一的字符串 path ，但是在 asset bundle 里并没有直接保存字符串，而是一个 hash 过的整数</span></span><br><span class="line">          <span class="keyword">int</span> offset; <span class="comment">// 相对当前 asset 块的</span></span><br><span class="line">          <span class="keyword">int</span> length;</span><br><span class="line">          <span class="keyword">byte</span> classID[<span class="number">8</span>]; <span class="comment">// Class ID的和具体类型的对应关系，在 Unity3d 的官方文档 可以查到。</span></span><br><span class="line">     &#125;;</span><br><span class="line">     <span class="keyword">int</span> ObjectCount;</span><br><span class="line">     ObjectInfo Object[];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> AssetTable &#123;</span><br><span class="line">     <span class="keyword">struct</span> AssetRef &#123;</span><br><span class="line">          <span class="keyword">byte</span> GUID[<span class="number">8</span>];</span><br><span class="line">          <span class="keyword">int</span> type;</span><br><span class="line">          <span class="keyword">string</span> filePath;</span><br><span class="line">          <span class="keyword">string</span> assetPath;</span><br><span class="line">     &#125;;</span><br><span class="line">     <span class="keyword">int</span> Count;</span><br><span class="line">     <span class="keyword">byte</span> Unknown;</span><br><span class="line">    vector Refs;</span><br></pre></td></tr></table></figure></p>
+<h2 id="压缩方案"><a href="#压缩方案" class="headerlink" title="压缩方案"></a>压缩方案</h2><p>AssetBundle 压缩后的大致文件组成：<br><img src="/2020/06/24/AssetBundle研究报告/3.png" class="AssetBundle Compreesion File"></p>
+<p>Unity 在打包 AssetBundle 时会默认以 LZMA 格式进行压缩，可以通过 <strong>BuildAssetBundleOptions</strong> 调整压缩方案。  </p>
+<ul>
+<li>BuildAssetBundleOptions.None(LZMA):<br>此选项会使用 LZMA 格式压缩成序列化文件流。LZMA 的优点是打包体积小，缺点是使用时需要整体解包，导致加载时间长。</li>
+<li>BuildAssetBundleOptions.UncompressedAssetBundle<br>此选项不会对文件进行压缩，优点是加载不需要解包速度快，缺点是打包体积大。</li>
+<li>BueldAssetBundleOptions.ChunkBasedCompression(LZ4)<br>此选项会以 LZ4 的格式进行压缩，LZ4 是一种基于 chunk 的算法，该算法运行 Bundle 进行分块（chunk）式加载，只解压缩单个需要使用的资产。</li>
+</ul>
+<h1 id="AssetBundle-加载时的存储方案"><a href="#AssetBundle-加载时的存储方案" class="headerlink" title="AssetBundle 加载时的存储方案"></a>AssetBundle 加载时的存储方案</h1><p>Bundle 加载后，分为两部分存储，</p>
+<ul>
+<li>一部分是头文件，以 SerializedFile 格式存储在内存中，</li>
+<li>另一部分则是 AssetBundle Content ，依据不同的加载的方式存储在内存或者磁盘中。</li>
+</ul>
+<h2 id="不同压缩方案的加载-API-对比："><a href="#不同压缩方案的加载-API-对比：" class="headerlink" title="不同压缩方案的加载 API 对比："></a>不同压缩方案的加载 API 对比：</h2><table>
+<thead>
+<tr>
+<th>API</th>
+<th>UnCompressed</th>
+<th>LZ4(ChunkBasedCompression)</th>
+<th>LZMA(Stream Compression)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>www</td>
+<td>内存：未压缩，内存读取</td>
+<td>内存：LZ4HC压缩，内存读取</td>
+<td>内存：LZ4压缩，内存读取</td>
+</tr>
+<tr>
+<td>LoadFromCacheOrDownload</td>
+<td>内存：无，硬盘直读</td>
+<td>内存：无，硬盘直读</td>
+<td>内存：无，硬盘直读</td>
+</tr>
+<tr>
+<td>LoadFromMemory(Async)</td>
+<td>内存：未压缩</td>
+<td>内存：LZ4HC压缩</td>
+<td>内存：LZ4压缩，LZMA解压 -&gt; LZ4压缩</td>
+</tr>
+<tr>
+<td>LoadFromFile(Async)</td>
+<td>内存：无，硬盘直读</td>
+<td>内存：无，硬盘直读</td>
+<td>内存：LZ4压缩 ，硬盘读取 -&gt; LZMA解压 -&gt; LZ4压缩 -&gt; 内存读取</td>
+</tr>
+<tr>
+<td>WebRequest</td>
+<td>内存：无，Cache直读</td>
+<td>内存：无，Cache直读</td>
+<td>内存：无，LZMA解压 -&gt; LZ4压缩</td>
+</tr>
+</tbody>
+</table>
+<h1 id="AsetBundle-加载后的内存分析"><a href="#AsetBundle-加载后的内存分析" class="headerlink" title="AsetBundle 加载后的内存分析"></a>AsetBundle 加载后的内存分析</h1><img src="/2020/06/24/AssetBundle研究报告/4.png" class="AssetBundle 内存分析">
+<h2 id="SerializedFile-分析"><a href="#SerializedFile-分析" class="headerlink" title="SerializedFile 分析"></a>SerializedFile 分析</h2><blockquote>
+<p>分别制作干净的 AssetBundle 包，加载进内存，通过 Profile 抓取内存分析大小并对比。Unity 版本 2017.4.x</p>
+</blockquote>
+<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>纹理大小不一样<br>|AssetBundle|TextureSize| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|texture1|512 <em> 512| 176 KB |18.0 KB |<br>|texture2|1024 </em> 1024| 688 KB |18.0 KB |</p>
+<h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><p>以拷贝出来的的 Standard Shader 为标准，分别增加其 Properties 和 SubShader<br>|AssetBundle|ShaderInfo| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|shader1|Copy From Standard| 110 KB | <strong>121.6 KB</strong> |<br>|shader2|+ 40 Properties| 113 KB| <strong>121.6 KB</strong> |<br>|shader3|+ 20 SubShader| 519 KB |<strong>121.6 KB</strong> |</p>
+<h3 id="Mesh"><a href="#Mesh" class="headerlink" title="Mesh"></a>Mesh</h3><p>顶点数量不同<br>|AssetBundle| MeshInfo |AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|mesh1| 0 verts 0 tris |9 KB| <strong>23.2 KB</strong> |<br>|mesh2| 30000 verts 10000 tris| 419 KB| <strong>23.2 KB</strong> |</p>
+<p>Asset 打包进行 AssetBundle 的序列化文件，并不受资源内容尺寸影响，只与资源类型相关</p>
+<h3 id="复数资源的打包"><a href="#复数资源的打包" class="headerlink" title="复数资源的打包"></a>复数资源的打包</h3><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Group</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>group1</td>
+<td>Texture1 + Mesh1 + Shader1</td>
+<td>289 KB</td>
+<td><strong>129.4 KB</strong></td>
+</tr>
+<tr>
+<td>group2</td>
+<td>Texture1 + Texture2 + Mesh1 + Mesh2 + Shader1 + Shader2</td>
+<td>1461 KB</td>
+<td><strong>129.5 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>同类资源打包, 并不等于单个资源序列化后的文件之和，而是小于，推测有过一些压缩的方案。</li>
+<li>重复资源打包，增长量为 0.1KB , 推断同类型资源不会重复创建序列化文件， 增长的 0.1KB 应该是引用相关的数据</li>
+</ul>
+<hr>
+<h3 id="Prefab-序列化尺寸"><a href="#Prefab-序列化尺寸" class="headerlink" title="Prefab 序列化尺寸"></a>Prefab 序列化尺寸</h3><p>空 Prefab<br>复数空 Prefab 尺寸<br>|AssetBundle| Info |AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>| prefab1| 空的 Gameobject | 5 KB | <strong>18.3 KB</strong> |<br>| prefabgroup | 100 个 空 Gameobject | 30 KB | <strong>23 KB</strong> |<br>100 个 Prefab 打包相比单个 Prefab ，增长量为 1.7 KB , 复数的 Prefab 合并打包不会创建重复的序列化文件</p>
+<h3 id="Prefab-复杂化后的尺寸"><a href="#Prefab-复杂化后的尺寸" class="headerlink" title="Prefab 复杂化后的尺寸"></a>Prefab 复杂化后的尺寸</h3><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prefab1</td>
+<td>空的 Gameobject</td>
+<td>5 KB</td>
+<td><strong>18.3 KB</strong></td>
+</tr>
+<tr>
+<td>prefab2</td>
+<td>深度创建 1000 个 Child</td>
+<td>192 KB</td>
+<td><strong>65.2 KB</strong></td>
+</tr>
+<tr>
+<td>prefab3</td>
+<td>广度创建 1000 个 Child</td>
+<td>197 KB</td>
+<td><strong>67.0 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>1000 个 Gameobject 嵌套创建后相比空的 GameObject ，增长量为 46.9 KB ，广度嵌套相比增长再多 1.8 KB 。 对比上一个空 prefab 的测试， 100 个 prefab 增长约 5KB , 这里 1000 个 child 对应增长  46.9 KB 。Prefab 的复杂度增加也会增大序列化文件的尺寸</p>
+<h2 id="MonoScript-AssetBundle-序列化尺寸"><a href="#MonoScript-AssetBundle-序列化尺寸" class="headerlink" title="MonoScript AssetBundle 序列化尺寸"></a>MonoScript AssetBundle 序列化尺寸</h2><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mono1</td>
+<td>干净的 MonoScript</td>
+<td>6 KB</td>
+<td><strong>20.1 KB</strong></td>
+</tr>
+<tr>
+<td>mono2</td>
+<td>+ 10 Vector3[] 序列化字段</td>
+<td>7 KB</td>
+<td><strong>20.8 KB</strong></td>
+</tr>
+<tr>
+<td>mono3</td>
+<td>每个序列化字段填入100个 vector3</td>
+<td>19 KB</td>
+<td><strong>20.8 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>脚本的序列化只与序列化字段的的数量有关，字段内容并不被提前序列化后加载</p>
+<h2 id="AssetBundle-中依赖关系的序列化分析"><a href="#AssetBundle-中依赖关系的序列化分析" class="headerlink" title="AssetBundle 中依赖关系的序列化分析"></a>AssetBundle 中依赖关系的序列化分析</h2><table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reference1</td>
+<td>GameObject + Mono</td>
+<td>6 KB</td>
+<td><strong>20.2 KB</strong></td>
+</tr>
+<tr>
+<td>reference2</td>
+<td>GameObject + Mono + Texture</td>
+<td>178 KB</td>
+<td><strong>21.6 KB</strong></td>
+</tr>
+<tr>
+<td>reference3</td>
+<td>GameObject + Mono -&gt; Texture</td>
+<td>178 KB</td>
+<td><strong>21.6 KB</strong></td>
+</tr>
+<tr>
+<td>reference4</td>
+<td>GameObject + Mono -&gt; Texture(texture1)</td>
+<td>6 KB</td>
+<td><strong>92.3 KB</strong></td>
+</tr>
+<tr>
+<td>reference4</td>
+<td>GameObject + Mono -&gt; Texture1(texture1) Texture2(texture2)</td>
+<td>6 KB</td>
+<td><strong>92.4 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>包内依赖与包内引用没有大小的变化，推断引用关系不会被序列化或者是量级太小无法感知</li>
+<li>包之间的引用产生了一个 70.7 KB 的变化，这个变化不会随着包的引用数量而增加</li>
+</ul>
+<p>网络上查了以下资料， Unity 在 Unit2018 大会上对 SerializedFile 文件大小有过讲解，细节如下：</p>
+<blockquote>
+<p>其实SerializedFile记录着重建资源所需的信息。而其大体的组成是有2 x 7KB的文件读取Buffer，较大的TypeTree占用，如果存有外部引用，会有一个最少72KB的External References的Buffer，剩下的就是我们资源的数据了，我们会在后续版本把External References的内存占用降到4KB+</p>
+<p>Profiler 内 SerializedFile 大体组成 (Unity 2017.4.1f Mobile &amp; Editor)</p>
+<ul>
+<li>14Kb File Read Cache</li>
+<li>(较大) TypeTree</li>
+<li>72KB External References</li>
+<li>(较小，与 AB 内 Object 数量相关) Object Map &amp; Infos  </li>
+</ul>
+<p><a href="https://connect.unity.com/p/unite-2018-jie-xi-assetbundle" target="_blank" rel="noopener">原文地址</a>  </p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>除了为了极短的减少包体尺寸 LZ4 的压缩格式在内存的额外占用，包体的大小，加载的时间上都有一定的优化能力，是一个不错的选择方案。</li>
+<li>从 SerializedFile 文件大小的分析可知，在分包策略上需要更多的考虑合包的可能性，否则容易造成复数的 External Refernce Buff 区域创建，造成内存的浪费。</li>
+</ul>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://blog.codingnow.com/2014/08/unity3d_asset_bundle.html" target="_blank" rel="noopener">Unity3D asset bundle 格式简析</a><br><a href="https://docs.unity3d.com/Manual/ClassIDReference.html" target="_blank" rel="noopener">ClassIDReference</a><br><a href="https://connect.unity.com/p/unite-2018-jie-xi-assetbundle" target="_blank" rel="noopener">Unite 2018 | 解析AssetBundle</a><br><a href="https://www.cnblogs.com/pinkfloyd/p/6489979.html" target="_blank" rel="noopener">AssetBundle文件结构浅析</a></p>
+]]></content>
+      <categories>
+        <category>Unity</category>
+      </categories>
+      <tags>
+        <tag>AssetBundle</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AssetBundle简析</title>
     <url>/2020/06/18/AssetBundle%E7%AE%80%E6%9E%90/</url>
     <content><![CDATA[<h1 id="AssetBundle-加载流程"><a href="#AssetBundle-加载流程" class="headerlink" title="AssetBundle 加载流程"></a>AssetBundle 加载流程</h1><p>加载流程可归纳为以下两种</p>
