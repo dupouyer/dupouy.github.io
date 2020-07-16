@@ -471,31 +471,7 @@
 <h2 id="SerializedFile-分析"><a href="#SerializedFile-分析" class="headerlink" title="SerializedFile 分析"></a>SerializedFile 分析</h2><blockquote>
 <p>分别制作干净的 AssetBundle 包，加载进内存，通过 Profile 抓取内存分析大小并对比。Unity 版本 2017.4.x</p>
 </blockquote>
-<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>纹理大小不一样  </p>
-<table>
-<thead>
-<tr>
-<th>AssetBundle</th>
-<th>TextureSize</th>
-<th>AssetBundleSize</th>
-<th>SerializedFileSize</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>texture1</td>
-<td>512 * 512</td>
-<td>176 KB</td>
-<td>18.0 KB</td>
-</tr>
-<tr>
-<td>texture2</td>
-<td>1024 * 1024</td>
-<td>688 KB</td>
-<td>18.0 KB</td>
-</tr>
-</tbody>
-</table>
+<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>纹理大小不一样<br>|AssetBundle|TextureSize| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|texture1|512 x 512| 176 KB |18.0 KB |<br>|texture2|1024 x 1024| 688 KB |18.0 KB |</p>
 <h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><p>以拷贝出来的的 Standard Shader 为标准，分别增加其 Properties 和 SubShader  </p>
 <table>
 <thead>
