@@ -576,9 +576,87 @@
 <h2 id="SerializedFile-分析"><a href="#SerializedFile-分析" class="headerlink" title="SerializedFile 分析"></a>SerializedFile 分析</h2><blockquote>
 <p>分别制作干净的 AssetBundle 包，加载进内存，通过 Profile 抓取内存分析大小并对比。Unity 版本 2017.4.x</p>
 </blockquote>
-<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>纹理大小不一样<br>|AssetBundle|TextureSize| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|texture1|512 <em> 512| 176 KB |18.0 KB |<br>|texture2|1024 </em> 1024| 688 KB |18.0 KB |</p>
-<h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><p>以拷贝出来的的 Standard Shader 为标准，分别增加其 Properties 和 SubShader<br>|AssetBundle|ShaderInfo| AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|shader1|Copy From Standard| 110 KB | <strong>121.6 KB</strong> |<br>|shader2|+ 40 Properties| 113 KB| <strong>121.6 KB</strong> |<br>|shader3|+ 20 SubShader| 519 KB |<strong>121.6 KB</strong> |</p>
-<h3 id="Mesh"><a href="#Mesh" class="headerlink" title="Mesh"></a>Mesh</h3><p>顶点数量不同<br>|AssetBundle| MeshInfo |AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>|mesh1| 0 verts 0 tris |9 KB| <strong>23.2 KB</strong> |<br>|mesh2| 30000 verts 10000 tris| 419 KB| <strong>23.2 KB</strong> |</p>
+<h3 id="Texture"><a href="#Texture" class="headerlink" title="Texture"></a>Texture</h3><p>纹理大小不一样  </p>
+<table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>TextureSize</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>texture1</td>
+<td>512 * 512</td>
+<td>176 KB</td>
+<td>18.0 KB</td>
+</tr>
+<tr>
+<td>texture2</td>
+<td>1024 * 1024</td>
+<td>688 KB</td>
+<td>18.0 KB</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Shader"><a href="#Shader" class="headerlink" title="Shader"></a>Shader</h3><p>以拷贝出来的的 Standard Shader 为标准，分别增加其 Properties 和 SubShader  </p>
+<table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>ShaderInfo</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shader1</td>
+<td>Copy From Standard</td>
+<td>110 KB</td>
+<td><strong>121.6 KB</strong></td>
+</tr>
+<tr>
+<td>shader2</td>
+<td>+ 40 Properties</td>
+<td>113 KB</td>
+<td><strong>121.6 KB</strong></td>
+</tr>
+<tr>
+<td>shader3</td>
+<td>+ 20 SubShader</td>
+<td>519 KB</td>
+<td><strong>121.6 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="Mesh"><a href="#Mesh" class="headerlink" title="Mesh"></a>Mesh</h3><p>顶点数量不同  </p>
+<table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>MeshInfo</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mesh1</td>
+<td>0 verts 0 tris</td>
+<td>9 KB</td>
+<td><strong>23.2 KB</strong></td>
+</tr>
+<tr>
+<td>mesh2</td>
+<td>30000 verts 10000 tris</td>
+<td>419 KB</td>
+<td><strong>23.2 KB</strong></td>
+</tr>
+</tbody>
+</table>
 <p>Asset 打包进行 AssetBundle 的序列化文件，并不受资源内容尺寸影响，只与资源类型相关</p>
 <h3 id="复数资源的打包"><a href="#复数资源的打包" class="headerlink" title="复数资源的打包"></a>复数资源的打包</h3><table>
 <thead>
@@ -609,7 +687,32 @@
 <li>重复资源打包，增长量为 0.1KB , 推断同类型资源不会重复创建序列化文件， 增长的 0.1KB 应该是引用相关的数据</li>
 </ul>
 <hr>
-<h3 id="Prefab-序列化尺寸"><a href="#Prefab-序列化尺寸" class="headerlink" title="Prefab 序列化尺寸"></a>Prefab 序列化尺寸</h3><p>空 Prefab<br>复数空 Prefab 尺寸<br>|AssetBundle| Info |AssetBundleSize|SerializedFileSize|<br>|—|—|—|—|<br>| prefab1| 空的 Gameobject | 5 KB | <strong>18.3 KB</strong> |<br>| prefabgroup | 100 个 空 Gameobject | 30 KB | <strong>23 KB</strong> |<br>100 个 Prefab 打包相比单个 Prefab ，增长量为 1.7 KB , 复数的 Prefab 合并打包不会创建重复的序列化文件</p>
+<h3 id="Prefab-序列化尺寸"><a href="#Prefab-序列化尺寸" class="headerlink" title="Prefab 序列化尺寸"></a>Prefab 序列化尺寸</h3><p>空 Prefab<br>复数空 Prefab 尺寸  </p>
+<table>
+<thead>
+<tr>
+<th>AssetBundle</th>
+<th>Info</th>
+<th>AssetBundleSize</th>
+<th>SerializedFileSize</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prefab1</td>
+<td>空的 Gameobject</td>
+<td>5 KB</td>
+<td><strong>18.3 KB</strong></td>
+</tr>
+<tr>
+<td>prefabgroup</td>
+<td>100 个 空 Gameobject</td>
+<td>30 KB</td>
+<td><strong>23 KB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>100 个 Prefab 打包相比单个 Prefab ，增长量为 1.7 KB , 复数的 Prefab 合并打包不会创建重复的序列化文件</p>
 <h3 id="Prefab-复杂化后的尺寸"><a href="#Prefab-复杂化后的尺寸" class="headerlink" title="Prefab 复杂化后的尺寸"></a>Prefab 复杂化后的尺寸</h3><table>
 <thead>
 <tr>
